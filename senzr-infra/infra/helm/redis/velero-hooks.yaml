@@ -1,0 +1,33 @@
+apiVersion: velero.io/v1
+kind: Backup
+metadata:
+  name: redis-backup
+  annotations:
+    # Pre-hook: Flush data to disk before backup
+    pre.hook.backup.velero.io/container: redis
+    pre.hook.backup.velero.io/command: '["redis-cli", "-a", "$(REDIS_PASSWORD)", "BGSAVE"]'
+    pre.hook.backup.velero.io/timeout: 5m
+    
+    # Post-hook: Verify backup completion
+    post.hook.backup.velero.io/container: redis
+    post.hook.backup.velero.io/command: '["redis-cli", "-a", "$(REDIS_PASSWORD)", "LASTSAVE"]'
+    post.hook.backup.velero.io/timeout: 2m
+---
+apiVersion: velero.io/v1
+kind: Restore
+metadata:
+  name: redis-restore
+  annotations:
+    # Init container to prepare data directory
+    init.hook.restore.velero.io/container-name: redis-init
+    init.hook.restore.velero.io/command: '["sh", "-c", "chown -R 999:999 /data"]'
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: redis-post-restore
+  annotations:
+    # Post-restore: Load data if needed
+    post.hook.restore.velero.io/container: redis
+    post.hook.restore.velero.io/command: '["sh", "-c", "redis-cli -a $(REDIS_PASSWORD) --pipe < /data/dump.rdb"]'
+    post.hook.restore.velero.io/wait-timeout: 15m

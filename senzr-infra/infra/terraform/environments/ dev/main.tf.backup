@@ -1,0 +1,252 @@
+terraform {
+  required_version = ">= 1.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.23"
+    }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 2.10"
+    }
+  }
+
+  # Configure backend for state management (adjust as needed)
+  backend "s3" {
+    bucket = "your-terraform-state-bucket"  # Replace with your S3 bucket
+    key    = "iot-attendance/dev/terraform.tfstate"
+    region = "us-west-2"  # Replace with your region
+  }
+}
+
+provider "aws" {
+  region = var.aws_region
+
+  default_tags {
+    tags = local.common_tags
+  }
+}
+
+locals {
+  cluster_name = "${var.project_name}-${var.environment}"
+  
+  common_tags = {
+    Project     = var.project_name
+    Environment = var.environment
+    ManagedBy   = "terraform"
+    CreatedAt   = timestamp()
+  }
+}
+
+# VPC Module
+module "vpc" {
+  source = "../../modules/vpc"
+
+  aws_region         = var.aws_region
+  cluster_name       = local.cluster_name
+  vpc_cidr           = var.vpc_cidr
+  availability_zones = var.availability_zones
+  tags               = local.common_tags
+}
+
+# EKS Module
+module "eks" {
+  source = "../../modules/eks"
+
+  aws_region               = var.aws_region
+  cluster_name             = local.cluster_name
+  kubernetes_version       = var.kubernetes_version
+  vpc_id                   = module.vpc.vpc_id
+  private_subnets          = module.vpc.private_subnets
+  tags                     = local.common_tags
+}
+
+# S3 Module
+module "s3" {
+  source = "../../modules/s3"
+
+  aws_region   = var.aws_region
+  cluster_name = local.cluster_name
+  environment  = var.environment
+  eks_role_arn = module.eks.cluster_iam_role_name
+  tags         = local.common_tags
+}
+
+# RDS Module
+module "rds" {
+  source = "../../modules/rds"
+
+  aws_region                = var.aws_region
+  cluster_name              = local.cluster_name
+  vpc_id                    = module.vpc.vpc_id
+  private_subnets           = module.vpc.private_subnets
+  eks_security_group_id     = module.eks.node_security_group_id
+  postgres_version          = var.postgres_version
+  instance_class            = var.rds_instance_class
+  allocated_storage         = var.rds_allocated_storage
+  db_name                   = var.db_name
+  db_username               = var.db_username
+  db_password               = var.db_password
+  cluster_endpoint          = module.eks.cluster_endpoint
+  cluster_ca_certificate    = module.eks.cluster_certificate_authority_data
+  tags                      = local.common_tags
+}
+
+# Redis Sentinel Module
+module "redis_sentinel" {
+  source = "../../modules/redis-sentinel"
+
+  aws_region             = var.aws_region
+  cluster_name           = local.cluster_name
+  cluster_endpoint       = module.eks.cluster_endpoint
+  cluster_ca_certificate = module.eks.cluster_certificate_authority_data
+  redis_password         = var.redis_password
+  redis_storage_size     = var.redis_storage_size
+  tags                   = local.common_tags
+}
+
+# NATS Module
+module "nats" {
+  source = "../../modules/nats"
+
+  aws_region             = var.aws_region
+  cluster_name           = local.cluster_name
+  cluster_endpoint       = module.eks.cluster_endpoint
+  cluster_ca_certificate = module.eks.cluster_certificate_authority_data
+  nats_storage_size      = var.nats_storage_size
+  tags                   = local.common_tags
+}
+
+# EMQX Module
+module "emqx" {
+  source = "../../modules/emqx"
+
+  aws_region                = var.aws_region
+  cluster_name              = local.cluster_name
+  cluster_endpoint          = module.eks.cluster_endpoint
+  cluster_ca_certificate    = module.eks.cluster_certificate_authority_data
+  emqx_admin_password       = var.emqx_admin_password
+  redis_microservices_host  = module.redis_sentinel.redis_microservices_host
+  redis_password            = var.redis_password
+  tags                      = local.common_tags
+}
+
+# Kong Module - UPDATED WITH REQUIRED PARAMETERS
+module "kong" {
+  source = "../../modules/kong"
+  
+  ami_id            = "ami-09684f82842ced0e3"  # The AMI ID you found
+  key_name          = "kong-key"               # The key pair you created
+  security_group_ids = [module.vpc.default_security_group_id]
+  vpc_id            = module.vpc.vpc_id
+  subnet_ids        = module.vpc.private_subnets
+  
+  # Keep existing configuration
+  aws_region                = var.aws_region
+  cluster_name              = local.cluster_name
+  redis_kong_host           = module.redis_sentinel.redis_kong_host
+  redis_password            = var.redis_password
+  tags                      = local.common_tags
+}
+
+# Directus Module
+module "directus" {
+  source = "../../modules/directus"
+
+  aws_region                  = var.aws_region
+  cluster_name                = local.cluster_name
+  cluster_endpoint            = module.eks.cluster_endpoint
+  cluster_ca_certificate      = module.eks.cluster_certificate_authority_data
+  redis_directus_host         = module.redis_sentinel.redis_directus_host
+  redis_password              = var.redis_password
+  db_connection_string        = module.rds.pgbouncer_connection_string
+  db_secret_arn               = module.rds.rds_secret_arn
+  s3_bucket_name              = module.s3.directus_assets_bucket_name
+  s3_region                   = var.aws_region
+  directus_admin_email        = var.directus_admin_email
+  directus_admin_password     = var.directus_admin_password
+  tags                        = local.common_tags
+}
+
+# Monitoring Module
+module "monitoring" {
+  source = "../../modules/monitoring"
+
+  aws_region             = var.aws_region
+  cluster_name           = local.cluster_name
+  cluster_endpoint       = module.eks.cluster_endpoint
+  cluster_ca_certificate = module.eks.cluster_certificate_authority_data
+  grafana_admin_password = var.grafana_admin_password
+  tags                   = local.common_tags
+}
+
+# Velero Module
+module "velero" {
+  source = "../../modules/velero"
+
+  aws_region             = var.aws_region
+  cluster_name           = local.cluster_name
+  cluster_endpoint       = module.eks.cluster_endpoint
+  cluster_ca_certificate = module.eks.cluster_certificate_authority_data
+  oidc_provider_arn      = module.eks.oidc_provider_arn
+  tags                   = local.common_tags
+}
+
+# Microservices Module
+module "microservices" {
+  source = "../../modules/microservices"
+
+  aws_region                    = var.aws_region
+  cluster_name                  = local.cluster_name
+  cluster_endpoint              = module.eks.cluster_endpoint
+  cluster_ca_certificate        = module.eks.cluster_certificate_authority_data
+  redis_microservices_host      = module.redis_sentinel.redis_microservices_host
+  redis_password                = var.redis_password
+  nats_server_url               = "nats://nats.nats.svc.cluster.local:4222"
+  s3_archive_bucket_name        = module.s3.device_logs_archive_bucket_name
+  oidc_provider_arn             = module.eks.oidc_provider_arn
+  tags                          = local.common_tags
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kong-config
+  namespace: senzr
+data:
+  kong.yml: |
+    _format_version: "3.0"
+    _transform: true
+    services:
+    - name: directus-service
+      url: http://directus-service.senzr.svc.cluster.local:8055
+      routes:
+      - name: directus-api-route
+        paths:
+        - /api
+        strip_path: true
+        preserve_host: true
+        methods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+        - OPTIONS
+        - HEAD
+        protocols:
+        - http
+        - https
+        plugins:
+        - name: cors
+          config:
+            origins:
+            - "*"
+            methods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - PATCH
+            - OPTIONS
+            headers:
+            - Accept
+            - Content-Length
+            - Content-Type
+            - Authorization
+            - X-Auth-Token
+            exposed_headers:
+            - X-Auth-Token
+            credentials: true
+            max_age: 3600

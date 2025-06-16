@@ -1,0 +1,205 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: directus-secrets
+  namespace: senzr
+type: Opaque
+stringData:
+  DB_PASSWORD: "DirectusSecure123!"
+  KEY: "directus-super-secret-key-2024-production"
+  SECRET: "directus-admin-secret-token-2024-production"
+  ADMIN_EMAIL: "admin@senzr.com"
+  ADMIN_PASSWORD: "DirectusAdmin123!"
+  
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: directus-config
+  namespace: senzr
+data:
+  DB_CLIENT: "pg"
+  DB_HOST: "directus-postgres.cjguq2ma02dv.ap-south-1.rds.amazonaws.com"
+  DB_PORT: "5432"
+  DB_DATABASE: "postgres"
+  DB_USER: "directus_admin"
+  CACHE_ENABLED: "true"
+  CACHE_STORE: "redis"
+  REDIS_HOST: "directus-redis.mesycn.0001.aps1.cache.amazonaws.com"
+  REDIS_PORT: "6379"
+  STORAGE_LOCATIONS: "s3"
+  STORAGE_S3_DRIVER: "s3"
+  STORAGE_S3_REGION: "ap-south-1"
+  STORAGE_S3_BUCKET: "senzr-media-files-202505231554"
+  PUBLIC_URL: "https://api.senzr.com"
+  CORS_ENABLED: "true"
+  CORS_ORIGIN: "true"
+  HOST: "0.0.0.0"
+  PORT: "8055"
+  LOG_LEVEL: "info"
+  
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: directus
+  namespace: senzr
+  labels:
+    app: directus
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: directus
+  template:
+    metadata:
+      labels:
+        app: directus
+    spec:
+      containers:
+      - name: directus
+        image: directus/directus:latest
+        ports:
+        - containerPort: 8055
+        env:
+        - name: DB_CLIENT
+          valueFrom:
+            configMapKeyRef:
+              name: directus-config
+              key: DB_CLIENT
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: directus-config
+              key: DB_HOST
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: directus-config
+              key: DB_PORT
+        - name: DB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: directus-config
+              key: DB_DATABASE
+        - name: DB_USER
+          valueFrom:
+            configMapKeyRef:
+              name: directus-config
+              key: DB_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: directus-secrets
+              key: DB_PASSWORD
+        - name: KEY
+          valueFrom:
+            secretKeyRef:
+              name: directus-secrets
+              key: KEY
+        - name: SECRET
+          valueFrom:
+            secretKeyRef:
+              name: directus-secrets
+              key: SECRET
+        - name: ADMIN_EMAIL
+          valueFrom:
+            secretKeyRef:
+              name: directus-secrets
+              key: ADMIN_EMAIL
+        - name: ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: directus-secrets
+              key: ADMIN_PASSWORD
+        - name: CACHE_ENABLED
+          valueFrom:
+            configMapKeyRef:
+              name: directus-config
+              key: CACHE_ENABLED
+        - name: CACHE_STORE
+          valueFrom:
+            configMapKeyRef:
+              name: directus-config
+              key: CACHE_STORE
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: directus-config
+              key: REDIS_HOST
+        - name: REDIS_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: directus-config
+              key: REDIS_PORT
+        - name: STORAGE_LOCATIONS
+          valueFrom:
+            configMapKeyRef:
+              name: directus-config
+              key: STORAGE_LOCATIONS
+        - name: STORAGE_S3_DRIVER
+          valueFrom:
+            configMapKeyRef:
+              name: directus-config
+              key: STORAGE_S3_DRIVER
+        - name: STORAGE_S3_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: directus-config
+              key: STORAGE_S3_REGION
+        - name: STORAGE_S3_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: directus-config
+              key: STORAGE_S3_BUCKET
+        - name: PUBLIC_URL
+          valueFrom:
+            configMapKeyRef:
+              name: directus-config
+              key: PUBLIC_URL
+        - name: CORS_ENABLED
+          valueFrom:
+            configMapKeyRef:
+              name: directus-config
+              key: CORS_ENABLED
+        - name: CORS_ORIGIN
+          valueFrom:
+            configMapKeyRef:
+              name: directus-config
+              key: CORS_ORIGIN
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /server/health
+            port: 8055
+          initialDelaySeconds: 60
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /server/health
+            port: 8055
+          initialDelaySeconds: 30
+          periodSeconds: 10
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: directus-service
+  namespace: senzr
+  labels:
+    app: directus
+spec:
+  selector:
+    app: directus
+  ports:
+  - name: http
+    port: 8055
+    targetPort: 8055
+  type: ClusterIP

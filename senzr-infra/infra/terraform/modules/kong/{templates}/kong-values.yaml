@@ -1,0 +1,18 @@
+image:
+  repository: kong
+  tag: "3.0"
+
+env:
+  database: "off"
+
+admin:
+  enabled: true
+  http:
+    enabled: true
+    servicePort: 8001
+
+proxy:
+  enabled: true
+  http:
+    enabled: true
+    servicePort: 8000

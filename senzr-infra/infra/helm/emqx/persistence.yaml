@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: emqx-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ebs-sc  # Must match your StorageClass
+  resources:
+    requests:
+      storage: 20Gi  # Adjust based on message volume
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: emqx
+spec:
+  serviceName: emqx-headless
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: emqx
+  template:
+    spec:
+      containers:
+      - name: emqx
+        volumeMounts:
+        - name: emqx-storage
+          mountPath: /opt/emqx/data
+  volumeClaimTemplates:
+  - metadata:
+      name: emqx-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "ebs-sc"
+      resources:
+        requests:
+          storage: 20Gi

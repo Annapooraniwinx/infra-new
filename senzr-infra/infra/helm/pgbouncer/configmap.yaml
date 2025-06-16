@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgbouncer-config
+  namespace: directus
+data:
+  pgbouncer.ini: |
+    [databases]
+    * = host=samay-db-cluster.cjguq2ma02dv.ap-south-1.rds.amazonaws.com port=5432
+    
+    [pgbouncer]
+    listen_addr = 0.0.0.0
+    listen_port = 6432
+    auth_type = md5
+    auth_file = /etc/pgbouncer/userlist.txt
+    pool_mode = transaction
+    max_client_conn = 1000
+    default_pool_size = 25
+    

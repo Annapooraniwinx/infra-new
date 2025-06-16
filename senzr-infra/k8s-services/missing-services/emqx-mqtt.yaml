@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emqx-mqtt
+  namespace: senzr
+  labels:
+    app: emqx-mqtt
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: emqx-mqtt
+  template:
+    metadata:
+      labels:
+        app: emqx-mqtt
+    spec:
+      containers:
+      - name: emqx
+        image: emqx/emqx:5.4.0
+        ports:
+        - containerPort: 1883
+        - containerPort: 8883
+        - containerPort: 8083
+        - containerPort: 18083
+        env:
+        - name: EMQX_NAME
+          value: "emqx"
+        - name: EMQX_HOST
+          value: "0.0.0.0"
+        - name: EMQX_DASHBOARD__DEFAULT_USERNAME
+          value: "admin"
+        - name: EMQX_DASHBOARD__DEFAULT_PASSWORD
+          value: "SenzrEMQX123!"
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: emqx-service
+  namespace: senzr
+spec:
+  selector:
+    app: emqx-mqtt
+  ports:
+  - name: mqtt
+    port: 1883
+    targetPort: 1883
+  - name: dashboard
+    port: 18083
+    targetPort: 18083
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: emqx-loadbalancer
+  namespace: senzr
+spec:
+  selector:
+    app: emqx-mqtt
+  ports:
+  - name: mqtt
+    port: 1883
+    targetPort: 1883
+  - name: dashboard
+    port: 18083
+    targetPort: 18083
+  type: LoadBalancer

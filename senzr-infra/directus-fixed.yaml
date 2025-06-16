@@ -1,0 +1,131 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: directus-production
+  namespace: senzr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: directus-production
+  template:
+    metadata:
+      labels:
+        app: directus-production
+    spec:
+      containers:
+      - name: directus
+        image: directus/directus:10.10.4
+        ports:
+        - containerPort: 8055
+        env:
+        # Database Configuration
+        - name: DB_CLIENT
+          value: "pg"
+        - name: DB_HOST
+          value: "directus-postgres.cjguq2ma02dv.ap-south-1.rds.amazonaws.com"
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_DATABASE
+          value: "postgres"
+        - name: DB_USER
+          value: "directus_admin"  # Try with postgres superuser
+        - name: DB_PASSWORD
+          value: "DirectusSecure123!"  # Update this with actual postgres password
+        - name: DB_SSL
+          value: "false"
+        
+        # Basic Directus Configuration
+        - name: KEY
+          value: "f57f625bedb12cc026d499d7c074daf5fd8e0b34b61538163ab0e81335f47427"
+        - name: SECRET
+          value: "f57f625bedb12cc026d499d7c074daf5fd8e0b34b61538163ab0e81335f47427"
+        - name: HOST
+          value: "0.0.0.0"
+        - name: PORT
+          value: "8055"
+        
+        # Admin User
+        - name: ADMIN_EMAIL
+          value: "admin@senzr.com"
+        - name: ADMIN_PASSWORD
+          value: "DirectusAdmin123!"
+        
+        # Other Settings
+        - name: NODE_TLS_REJECT_UNAUTHORIZED
+          value: "0"
+        - name: LOG_LEVEL
+          value: "info"
+        - name: CORS_ENABLED
+          value: "true"
+        - name: CORS_ORIGIN
+          value: "true"
+        
+        # Cache Configuration
+        - name: CACHE_ENABLED
+          value: "true"
+        - name: CACHE_STORE
+          value: "redis"
+        - name: REDIS_HOST
+          value: "redis-master-service.senzr.svc.cluster.local"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: REDIS_PASSWORD
+          value: "senzr-redis-2025"
+        - name: REDIS_DATABASE
+          value: "1"
+        
+        # S3 Storage
+        - name: STORAGE_LOCATIONS
+          value: "s3"
+        - name: STORAGE_S3_DRIVER
+          value: "s3"
+        - name: STORAGE_S3_BUCKET
+          value: "senzr-media-files-202505231554"
+        - name: STORAGE_S3_REGION
+          value: "ap-south-1"
+        - name: STORAGE_S3_KEY
+          value: "AKIAZ4Z6L5I57WVVPWMN"
+        - name: STORAGE_S3_SECRET
+          value: "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"
+        
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        
+        livenessProbe:
+          httpGet:
+            path: /server/health
+            port: 8055
+          initialDelaySeconds: 180
+          timeoutSeconds: 10
+          periodSeconds: 30
+          failureThreshold: 5
+        
+        readinessProbe:
+          httpGet:
+            path: /server/health
+            port: 8055
+          initialDelaySeconds: 120
+          timeoutSeconds: 10
+          periodSeconds: 15
+          failureThreshold: 3
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: directus-production-service
+  namespace: senzr
+spec:
+  selector:
+    app: directus-production
+  ports:
+  - port: 8055
+    targetPort: 8055
+    protocol: TCP
+  type: ClusterIP

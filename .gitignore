@@ -1,0 +1,11 @@
+# Edit .gitignore and add:
+
+# Ignore terraform providers
+.terraform/
+
+# Ignore provider binaries
+**/terraform-provider-*
+
+# Ignore awscli zips
+awscliv2.zip
+**/awscliv2.zip

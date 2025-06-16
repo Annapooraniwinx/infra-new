@@ -1,0 +1,105 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+- name: directus-service
+  url: http://directus-service.senzr.svc.cluster.local:8055
+  routes:
+  - name: directus-api-route
+    paths:
+    - /api
+    strip_path: false
+    preserve_host: true
+    plugins:
+    - name: cors
+      config:
+        origins:
+        - "*"
+        methods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+        - OPTIONS
+        headers:
+        - Accept
+        - Content-Length
+        - Content-Type
+        - Authorization
+        - X-Auth-Token
+        exposed_headers:
+        - X-Auth-Token
+        credentials: true
+        max_age: 3600
+    - name: rate-limiting
+      config:
+        minute: 200
+        hour: 5000
+        policy: local
+  - name: directus-admin-route
+    paths:
+    - /admin
+    strip_path: false
+    preserve_host: true
+    plugins:
+    - name: cors
+      config:
+        origins:
+        - "*"
+        methods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+        - OPTIONS
+        headers:
+        - Accept
+        - Content-Type
+        - Authorization
+        credentials: true
+        max_age: 3600
+    - name: rate-limiting
+      config:
+        minute: 100
+        hour: 2000
+        policy: local
+  - name: directus-assets-route
+    paths:
+    - /assets
+    strip_path: false
+    preserve_host: true
+    plugins:
+    - name: cors
+      config:
+        origins:
+        - "*"
+        methods:
+        - GET
+        - OPTIONS
+        headers:
+        - Accept
+        - Content-Type
+        credentials: true
+        max_age: 86400
+  - name: directus-auth-route
+    paths:
+    - /auth
+    strip_path: false
+    preserve_host: true
+    plugins:
+    - name: cors
+      config:
+        origins:
+        - "*"
+        methods:
+        - GET
+        - POST
+        - OPTIONS
+        headers:
+        - Accept
+        - Content-Type
+        - Authorization
+        credentials: true
+        max_age: 3600

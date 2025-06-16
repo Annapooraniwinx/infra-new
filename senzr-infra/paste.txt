@@ -1,0 +1,1 @@
+[Copy the entire content from your document above - the one starting with "# Terraform configuration generated from Directus schema"]

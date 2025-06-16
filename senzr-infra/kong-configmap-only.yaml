@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kong-declarative-config
+  namespace: senzr
+data:
+  kong.yml: |
+    _format_version: "3.0"
+    _transform: true
+    
+    services:
+    - name: directus-service
+      url: http://directus-production-service.senzr.svc.cluster.local:8055
+      routes:
+      - name: directus-root-route
+        paths: ["/"]
+        strip_path: false
+        methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+      - name: directus-admin-route
+        paths: ["/admin"]
+        strip_path: false
+        methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+      - name: directus-api-route
+        paths: ["/api"]
+        strip_path: false
+        methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+      - name: directus-assets-route
+        paths: ["/assets"]
+        strip_path: false
+        methods: ["GET"]
+      - name: directus-auth-route
+        paths: ["/auth"]
+        strip_path: false
+        methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+      - name: directus-graphql-route
+        paths: ["/graphql"]
+        strip_path: false
+        methods: ["GET", "POST", "OPTIONS"]
+      plugins:
+      - name: cors
+        config:
+          origins: ["https://d3hubh9hy19nx8.cloudfront.net", "*"]
+          methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+          headers: ["Accept", "Authorization", "Content-Type", "X-Requested-With"]
+          credentials: true
+          max_age: 3600
+          preflight_continue: false

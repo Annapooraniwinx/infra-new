@@ -1,0 +1,57 @@
+apiVersion: velero.io/v1
+kind: Restore
+metadata:
+  name: restore-probes
+  annotations:
+    # Pre-restore: Verify PVCs are provisioned
+    pre.hook.restore.velero.io/container: velero
+    pre.hook.restore.velero.io/command: '["sh", "-c", "kubectl get pvc -n $NAMESPACE | grep -q 'Bound'"]'
+    pre.hook.restore.velero.io/timeout: "5m"
+    pre.hook.restore.velero.io/exec-timeout: "3m"
+    
+    # Post-restore: Application health checks
+    post.hook.restore.velero.io/container: app-container
+    post.hook.restore.velero.io/command: '["sh", "-c", "curl --fail http://localhost:8080/health || exit 1"]'
+    post.hook.restore.velero.io/wait-timeout: "10m"
+    post.hook.restore.velero.io/exec-timeout: "2m"
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: post-restore-verify
+  annotations:
+    "helm.sh/hook": post-restore
+    "helm.sh/hook-weight": "5"
+spec:
+  template:
+    spec:
+      containers:
+      - name: verifier
+        image: bitnami/kubectl:latest
+        command:
+        - /bin/sh
+        - -c
+        - |
+          # Verify all pods are running
+          kubectl wait --for=condition=Ready pods --all -n $NAMESPACE --timeout=300s
+          
+          # Verify database connections
+          kubectl exec $DB_POD -- pg_isready -h localhost -t 30
+          
+          # Verify API endpoints
+          API_URL=$(kubectl get svc api-service -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+          curl -sSf "http://$API_URL/health" | grep -q '"status":"OK"'
+      restartPolicy: Never
+  backoffLimit: 2
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: restore-hooks
+data:
+  verify_redis.sh: |
+    #!/bin/sh
+    redis-cli -h $REDIS_HOST -a $REDIS_PASSWORD ping | grep -q PONG
+  verify_postgres.sh: |
+    #!/bin/sh
+    pg_isready -h $PGHOST -U $PGUSER -d $PGDATABASE -t 30

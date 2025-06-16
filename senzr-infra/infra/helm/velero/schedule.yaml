@@ -1,0 +1,11 @@
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: daily-backup
+spec:
+  schedule: "0 3 * * *"  # Daily at 3AM
+  template:
+    includedNamespaces:
+    - default
+    - monitoring
+    ttl: "720h"  # 30 days retention

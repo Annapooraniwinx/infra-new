@@ -1,0 +1,348 @@
+# Redis Sentinel High Availability Configuration
+# Replaces your current 3 separate Redis instances with a single HA cluster
+
+---
+# ConfigMap for Redis Master Configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-master-config
+  namespace: senzr
+data:
+  redis.conf: |
+    bind 0.0.0.0
+    port 6379
+    requirepass "senzr-redis-2025"
+    masterauth "senzr-redis-2025"
+    appendonly yes
+    appendfsync everysec
+    save 900 1
+    save 300 10
+    save 60 10000
+    tcp-keepalive 60
+    tcp-backlog 511
+    timeout 0
+    databases 16
+    maxmemory-policy allkeys-lru
+
+---
+# ConfigMap for Redis Replica Configuration  
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-replica-config
+  namespace: senzr
+data:
+  redis.conf: |
+    bind 0.0.0.0
+    port 6379
+    requirepass "senzr-redis-2025"
+    masterauth "senzr-redis-2025"
+    replicaof redis-master-service 6379
+    replica-read-only yes
+    appendonly yes
+    appendfsync everysec
+    tcp-keepalive 60
+    tcp-backlog 511
+    timeout 0
+
+---
+# ConfigMap for Redis Sentinel Configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-sentinel-config
+  namespace: senzr
+data:
+  sentinel.conf: |
+    port 26379
+    bind 0.0.0.0
+    sentinel monitor redis-main redis-master-service 6379 2
+    sentinel auth-pass redis-main "senzr-redis-2025"
+    sentinel down-after-milliseconds redis-main 30000
+    sentinel failover-timeout redis-main 180000
+    sentinel parallel-syncs redis-main 1
+    sentinel deny-scripts-reconfig yes
+    logfile ""
+
+---
+# Redis Master StatefulSet
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis-master
+  namespace: senzr
+  labels:
+    app: redis-master
+spec:
+  serviceName: redis-master-headless
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-master
+  template:
+    metadata:
+      labels:
+        app: redis-master
+        role: master
+    spec:
+      containers:
+      - name: redis
+        image: redis:7.2-alpine
+        ports:
+        - containerPort: 6379
+          name: redis
+        command:
+        - redis-server
+        - /etc/redis/redis.conf
+        volumeMounts:
+        - name: redis-config
+          mountPath: /etc/redis/
+        - name: redis-data
+          mountPath: /data
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "200m"
+          limits:
+            memory: "1Gi" 
+            cpu: "500m"
+        livenessProbe:
+          tcpSocket:
+            port: 6379
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          exec:
+            command:
+            - redis-cli
+            - -a
+            - "senzr-redis-2025"
+            - ping
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumes:
+      - name: redis-config
+        configMap:
+          name: redis-master-config
+  volumeClaimTemplates:
+  - metadata:
+      name: redis-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 10Gi
+
+---
+# Redis Replica StatefulSet
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis-replica
+  namespace: senzr
+  labels:
+    app: redis-replica
+spec:
+  serviceName: redis-replica-headless
+  replicas: 2
+  selector:
+    matchLabels:
+      app: redis-replica
+  template:
+    metadata:
+      labels:
+        app: redis-replica
+        role: replica
+    spec:
+      containers:
+      - name: redis
+        image: redis:7.2-alpine
+        ports:
+        - containerPort: 6379
+          name: redis
+        command:
+        - redis-server
+        - /etc/redis/redis.conf
+        volumeMounts:
+        - name: redis-config
+          mountPath: /etc/redis/
+        - name: redis-data
+          mountPath: /data
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "200m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        livenessProbe:
+          tcpSocket:
+            port: 6379
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          exec:
+            command:
+            - redis-cli
+            - -a
+            - "senzr-redis-2025"
+            - ping
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumes:
+      - name: redis-config
+        configMap:
+          name: redis-replica-config
+  volumeClaimTemplates:
+  - metadata:
+      name: redis-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 10Gi
+
+---
+# Redis Sentinel Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-sentinel
+  namespace: senzr
+  labels:
+    app: redis-sentinel
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: redis-sentinel
+  template:
+    metadata:
+      labels:
+        app: redis-sentinel
+        role: sentinel
+    spec:
+      containers:
+      - name: sentinel
+        image: redis:7.2-alpine
+        ports:
+        - containerPort: 26379
+          name: sentinel
+        command:
+        - redis-sentinel
+        - /etc/redis/sentinel.conf
+        volumeMounts:
+        - name: sentinel-config
+          mountPath: /etc/redis/
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        livenessProbe:
+          tcpSocket:
+            port: 26379
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 26379
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumes:
+      - name: sentinel-config
+        configMap:
+          name: redis-sentinel-config
+
+---
+# Redis Master Service (Headless)
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-master-headless
+  namespace: senzr
+  labels:
+    app: redis-master
+spec:
+  clusterIP: None
+  ports:
+  - port: 6379
+    targetPort: 6379
+    name: redis
+  selector:
+    app: redis-master
+
+---
+# Redis Master Service (ClusterIP for direct access)  
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-master-service
+  namespace: senzr
+  labels:
+    app: redis-master
+spec:
+  type: ClusterIP
+  ports:
+  - port: 6379
+    targetPort: 6379
+    name: redis
+  selector:
+    app: redis-master
+
+---
+# Redis Replica Service (Headless)
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-replica-headless
+  namespace: senzr
+  labels:
+    app: redis-replica
+spec:
+  clusterIP: None
+  ports:
+  - port: 6379
+    targetPort: 6379
+    name: redis
+  selector:
+    app: redis-replica
+
+---
+# Redis Replica Service (ClusterIP for read access)
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-replica-service
+  namespace: senzr 
+  labels:
+    app: redis-replica
+spec:
+  type: ClusterIP
+  ports:
+  - port: 6379
+    targetPort: 6379
+    name: redis
+  selector:
+    app: redis-replica
+
+---
+# Redis Sentinel Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-sentinel-service
+  namespace: senzr
+  labels:
+    app: redis-sentinel
+spec:
+  type: ClusterIP
+  ports:
+  - port: 26379
+    targetPort: 26379
+    name: sentinel
+  selector:
+    app: redis-sentinel

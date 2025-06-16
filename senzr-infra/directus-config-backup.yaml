@@ -1,0 +1,32 @@
+apiVersion: v1
+data:
+  CACHE_ENABLED: "false"
+  CORS_ENABLED: "true"
+  CORS_ORIGIN: "true"
+  DB_CLIENT: pg
+  DB_DATABASE: postgres
+  DB_HOST: directus-postgres.cjguq2ma02dv.ap-south-1.rds.amazonaws.com
+  DB_PORT: "5432"
+  DB_SSL: "false"
+  DB_SSL_REJECT_UNAUTHORIZED: "false"
+  DB_USER: directus_admin
+  HOST: 0.0.0.0
+  KEY: 49663d5ccdca59f76a13731ce5fbedb36927bc453d3fb59916743f048d1f3e7b
+  LOG_LEVEL: info
+  NODE_TLS_REJECT_UNAUTHORIZED: "0"
+  PORT: "8055"
+  PUBLIC_URL: http://ad5b1eb3b1fff4345bd4d4be7065213f-272763669.ap-south-1.elb.amazonaws.com:8000
+  STORAGE_LOCATIONS: s3
+  STORAGE_S3_BUCKET: senzr-media-files-202505231554
+  STORAGE_S3_DRIVER: s3
+  STORAGE_S3_REGION: ap-south-1
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"CACHE_ENABLED":"false","CORS_ENABLED":"true","CORS_ORIGIN":"true","DB_CLIENT":"pg","DB_DATABASE":"postgres","DB_HOST":"pgbouncer-service.senzr.svc.cluster.local","DB_PORT":"5432","DB_SSL":"false","DB_SSL_REJECT_UNAUTHORIZED":"false","DB_USER":"directus_admin","HOST":"0.0.0.0","LOG_LEVEL":"info","NODE_TLS_REJECT_UNAUTHORIZED":"0","PORT":"8055","PUBLIC_URL":"http://ad5b1eb3b1fff4345bd4d4be7065213f-272763669.ap-south-1.elb.amazonaws.com:8000","STORAGE_LOCATIONS":"s3","STORAGE_S3_BUCKET":"senzr-media-files-202505231554","STORAGE_S3_DRIVER":"s3","STORAGE_S3_REGION":"ap-south-1"},"kind":"ConfigMap","metadata":{"annotations":{},"name":"directus-production-config","namespace":"senzr"}}
+  creationTimestamp: "2025-05-24T05:39:40Z"
+  name: directus-production-config
+  namespace: senzr
+  resourceVersion: "4479360"
+  uid: c603c4c9-ea3f-4939-9c3f-2eb3820af545

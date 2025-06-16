@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: directus-production-config
+  namespace: senzr
+data:
+  DB_CLIENT: "pg"
+  DB_HOST: "postgres-service.senzr.svc.cluster.local"
+  DB_PORT: "5432"
+  DB_DATABASE: "samey-web-app"
+  DB_USER: "postgres"
+  PUBLIC_URL: "http://ad5b1eb3b1fff4345bd4d4be7065213f-272763669.ap-south-1.elb.amazonaws.com:8000"

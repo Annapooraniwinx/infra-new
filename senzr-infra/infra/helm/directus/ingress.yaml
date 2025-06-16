@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: directus-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod  # If using cert-manager
+    nginx.ingress.kubernetes.io/proxy-body-size: "16m"  # For file uploads
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header X-Forwarded-Proto $scheme;
+spec:
+  tls:
+    - hosts:
+        - cms.yourdomain.com
+      secretName: directus-tls
+  rules:
+    - host: cms.yourdomain.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: directus-service
+                port:
+                  number: 8055

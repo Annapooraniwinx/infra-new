@@ -1,0 +1,99 @@
+{
+    "Stacks": [
+        {
+            "StackId": "arn:aws:cloudformation:ap-south-1:680346249787:stack/eksctl-emqx-cluster-cluster/8bc843e0-3006-11f0-80b7-02cfec084185",
+            "StackName": "eksctl-emqx-cluster-cluster",
+            "Description": "EKS cluster (dedicated VPC: true, dedicated IAM: true) [created and managed by eksctl]",
+            "CreationTime": "2025-05-13T14:28:32.209000+00:00",
+            "DeletionTime": "2025-05-23T04:31:34.037000+00:00",
+            "RollbackConfiguration": {},
+            "StackStatus": "DELETE_IN_PROGRESS",
+            "DisableRollback": false,
+            "NotificationARNs": [],
+            "Capabilities": [
+                "CAPABILITY_IAM"
+            ],
+            "Outputs": [
+                {
+                    "OutputKey": "SubnetsPrivate",
+                    "OutputValue": "subnet-0f1d2f7c3c0836c8e,subnet-0b0b6bbe76743e4eb,subnet-0fed26e77a7171a2d",
+                    "ExportName": "eksctl-emqx-cluster-cluster::SubnetsPrivate"
+                },
+                {
+                    "OutputKey": "SubnetsPublic",
+                    "OutputValue": "subnet-0c8f5b26b7bae99e2,subnet-00b9b83b3a17a42dd,subnet-0437f7b21a8fa2520",
+                    "ExportName": "eksctl-emqx-cluster-cluster::SubnetsPublic"
+                },
+                {
+                    "OutputKey": "FeatureNATMode",
+                    "OutputValue": "Single"
+                },
+                {
+                    "OutputKey": "ServiceRoleARN",
+                    "OutputValue": "arn:aws:iam::680346249787:role/eksctl-emqx-cluster-cluster-ServiceRole-o1ZZnXQJtXiq",
+                    "ExportName": "eksctl-emqx-cluster-cluster::ServiceRoleARN"
+                },
+                {
+                    "OutputKey": "Endpoint",
+                    "OutputValue": "https://BC4FF057E85BC02047C2DE6234206E8D.gr7.ap-south-1.eks.amazonaws.com",
+                    "ExportName": "eksctl-emqx-cluster-cluster::Endpoint"
+                },
+                {
+                    "OutputKey": "SharedNodeSecurityGroup",
+                    "OutputValue": "sg-0fe6650470265561d",
+                    "ExportName": "eksctl-emqx-cluster-cluster::SharedNodeSecurityGroup"
+                },
+                {
+                    "OutputKey": "VPC",
+                    "OutputValue": "vpc-0411974dade0c15e2",
+                    "ExportName": "eksctl-emqx-cluster-cluster::VPC"
+                },
+                {
+                    "OutputKey": "ClusterSecurityGroupId",
+                    "OutputValue": "sg-0cd9f5690a5d5051d",
+                    "ExportName": "eksctl-emqx-cluster-cluster::ClusterSecurityGroupId"
+                },
+                {
+                    "OutputKey": "ClusterStackName",
+                    "OutputValue": "eksctl-emqx-cluster-cluster"
+                },
+                {
+                    "OutputKey": "CertificateAuthorityData",
+                    "OutputValue": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJWEgwWkR0d2wyQmd3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TlRBMU1UTXhOREk0TURaYUZ3MHpOVEExTVRFeE5ETXpNRFphTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURzQityY0FWYzdoUmZIOG9CdC9DYnNlN21yMW5GQm80UDNyTUhmUm9RLzd1dXFqc2dqNW5wd3hBTXQKZjJ2K2hqYjJiZ2JpQ1ZuZWEvb3ZiNElZOHJmUTRhODc1Qm8ydi9odU16b3BJbDEzWXlsZEVjSFJTcllxdlFETgpaVUl2aW1qeUFYL0J0M210V0NNZ1pQb2pCSklqbjRONW12YUlqcnMyajUxMlFOSjg4dkpZRmc5TmR3eGZRalR0CkxZRFF0ZEJJWjl6eDQ3T1ZoMTFMMUVUWDFCWFNNQW9PMVJiMVVTQzFuU2xueEswUVdOempqcEFFcU1pNUo4eWcKNlFzWGFrRWk0azM2YUFFT0hSYnlWTEhpWk1MUFBibFN5VmtNL3BlSnVhbk81aFJnNWZteGFaLzZxVkRMYjU1bwp0OElFc3I1QWo0TkN3NVRleFBnczM5NEtHSk1uQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJTNi9wOFFVSHZvSHFRcmRPTkxDL1pEZ05sN1JEQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQXNsQTNadnA1OQpTMUpLdEloU01xOG9sVVFNVFpZUStFdlRaSDZHUnZkNlVkMi9vOTBGTzBNaHdNVzI3UHY4dGJVQ0N0dGJ5N2g1CkZBcEV3VVFTMkJwQXVIQklvT1Y3c3lMakZZZ1RmaEdXYlJiWDhWTTR1a3BkQmRhZ1RscVNiaHhxdXRlaDN0c04KVDlmQno5cjIzQTc0bHNBdHNBV2gyM0p1WGQwaC9lbzFLYnJoY1VaQVNRL3NPTXN6ZlZXdXhJUnljU0V0OC9tcApXQ1JDa093bEdJTmxWRVBZTk4vWmNuYmNBZUNVTjBKVDB3Zk41RWFRMHp6eVVhOFRuT0tjWUpwc1MwVjNPWGp2CmtyVHJwVE41UXFYSld2cG1MNXdUTVpjQndZa3I0cG1LVWEvZ2dTaHNjeUlSTUp6NkZ1eWhxRGxKd0VCbXBRbi8KWUdCMGE3RlE3TmFvCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+                },
+                {
+                    "OutputKey": "SecurityGroup",
+                    "OutputValue": "sg-0b58c03409a1ba626",
+                    "ExportName": "eksctl-emqx-cluster-cluster::SecurityGroup"
+                },
+                {
+                    "OutputKey": "ARN",
+                    "OutputValue": "arn:aws:eks:ap-south-1:680346249787:cluster/emqx-cluster",
+                    "ExportName": "eksctl-emqx-cluster-cluster::ARN"
+                }
+            ],
+            "Tags": [
+                {
+                    "Key": "alpha.eksctl.io/cluster-name",
+                    "Value": "emqx-cluster"
+                },
+                {
+                    "Key": "eksctl.cluster.k8s.io/v1alpha1/cluster-name",
+                    "Value": "emqx-cluster"
+                },
+                {
+                    "Key": "alpha.eksctl.io/cluster-oidc-enabled",
+                    "Value": "false"
+                },
+                {
+                    "Key": "alpha.eksctl.io/eksctl-version",
+                    "Value": "0.207.0"
+                }
+            ],
+            "EnableTerminationProtection": false,
+            "DriftInformation": {
+                "StackDriftStatus": "NOT_CHECKED"
+            }
+        }
+    ]
+}

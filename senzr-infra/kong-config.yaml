@@ -1,0 +1,15 @@
+_format_version: "3.0"
+services:
+  - name: directus-service
+    url: http://directus:8055
+    routes:
+      - name: api-route
+        paths:
+          - /api
+        strip_path: true
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH

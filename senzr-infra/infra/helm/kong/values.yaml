@@ -1,0 +1,35 @@
+image:
+  repository: kong/kong-gateway
+  tag: "3.4"
+
+env:
+  prefix: /kong_prefix/
+  database: "postgres"           # Important: Using DB mode
+  pg_host: "samay-db-cluster.cjguq2ma02dv.ap-south-1.rds.amazonaws.com"
+  pg_user: "kong"
+  pg_password: "poorani"
+  admin_listen: "0.0.0.0:8001"
+
+service:
+  type: LoadBalancer
+  ports:
+    - name: proxy
+      port: 8000
+      targetPort: 8000
+    - name: admin
+      port: 8001
+      targetPort: 8001
+
+ingress:
+  enabled: true
+  hosts:
+    - host: kong-admin.samaypayroll.com
+      paths:
+        - path: /
+          pathType: Prefix
+
+plugins:
+  config:
+    rate-limiting:
+      redis_host: "redis-master"
+      redis_port: 6379

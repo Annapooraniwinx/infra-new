@@ -1,0 +1,22 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongRoute
+metadata:
+  name: directus-ap-route
+  namespace: senzr
+  annotations:
+    konghq.com/strip-path: "true"
+spec:
+  paths:
+  - /ap
+  methods:
+  - GET
+  - POST
+  - PUT
+  - PATCH
+  - DELETE
+  - OPTIONS
+  protocols:
+  - http
+  - https
+  service:
+    name: directus-service

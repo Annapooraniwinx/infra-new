@@ -1,0 +1,15 @@
+{
+    "title": "Application Logs",
+    "panels": [
+      {
+        "title": "Error Logs",
+        "type": "logs",
+        "datasource": "Loki",
+        "targets": [
+          {
+            "expr": "{app=~\"kong|directus\"} |= \"error\""
+          }
+        ]
+      }
+    ]
+  }

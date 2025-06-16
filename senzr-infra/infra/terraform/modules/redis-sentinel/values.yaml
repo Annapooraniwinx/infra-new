@@ -1,0 +1,6 @@
+architecture: replication
+auth:
+  enabled: true
+  password: poorani
+sentinel:
+  enabled: true

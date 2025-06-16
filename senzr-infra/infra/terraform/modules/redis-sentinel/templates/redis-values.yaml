@@ -1,0 +1,21 @@
+global:
+  storageClass: "gp2"
+
+nameOverride: "redis-sentinel"
+
+architecture: replication
+
+auth:
+  enabled: false
+
+sentinel:
+  enabled: true
+
+master:
+  persistence:
+    enabled: false
+
+replica:
+  replicaCount: 2
+  persistence:
+    enabled: false

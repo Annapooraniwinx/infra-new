@@ -1,0 +1,27 @@
+{
+    "CallerReference": "update-$(date +%s)",
+    "Origins": {
+        "Items": [{
+            "Id": "S3-samaypayroll",
+            "DomainName": "samaypayroll.s3-website.ap-south-1.amazonaws.com",
+            "OriginPath": "",
+            "S3OriginConfig": {
+                "OriginAccessIdentity": ""
+            }
+        }],
+        "Quantity": 1
+    },
+    "DefaultCacheBehavior": {
+        "TargetOriginId": "S3-samaypayroll",
+        "ViewerProtocolPolicy": "redirect-to-https",
+        "AllowedMethods": {
+            "Quantity": 2,
+            "Items": ["GET", "HEAD"]
+        },
+        "Compress": true,
+        "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad"  # CachingOptimized
+    },
+    "Comment": "",
+    "PriceClass": "PriceClass_100",  # US/Canada/Europe
+    "Enabled": true
+}

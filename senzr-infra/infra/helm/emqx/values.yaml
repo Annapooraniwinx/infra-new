@@ -1,0 +1,25 @@
+replicaCount: 3
+
+image:
+  repository: emqx/emqx
+  tag: "5.3.0"
+
+persistence:
+  enabled: true
+  storageClass: "ebs-sc"
+  size: "20Gi"
+
+service:
+  type: LoadBalancer
+  ports:
+    - name: mqtt
+      port: 1883
+      targetPort: 1883
+    - name: dashboard
+      port: 18083
+      targetPort: 18083
+
+env:
+  EMQX_NODE__NAME: "emqx@$(POD_IP)"
+  EMQX_CLUSTER__DISCOVERY: "k8s"
+  EMQX_MQTT__MAX_QOS: "2"  # QoS support

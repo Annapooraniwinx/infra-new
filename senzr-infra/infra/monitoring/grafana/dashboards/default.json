@@ -1,0 +1,21 @@
+{
+    "dashboard": {
+      "id": null,
+      "title": "Kong API Metrics",
+      "tags": ["kong", "api-gateway"],
+      "timezone": "browser",
+      "panels": [
+        {
+          "title": "Request Rate",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(rate(kong_http_requests_total[1m])) by (service)",
+              "legendFormat": "{{service}}"
+            }
+          ]
+        }
+      ]
+    }
+  }

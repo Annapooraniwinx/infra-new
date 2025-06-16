@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: directus-secrets
+  namespace: senzr
+type: Opaque
+stringData:
+  DB_PASSWORD: "DirectusSecure123!"
+  SECRET: "f57f625bedb12cc026d499d7c074daf5fd8e0b34b61538163ab0e81335f47427"
+  KEY: "f57f625bedb12cc026d499d7c074daf5fd8e0b34b61538163ab0e81335f47427"
+  STORAGE_S3_KEY: "AKIAZ4Z6L5I57WVVPWMN"
+  STORAGE_S3_SECRET: "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"
+  ADMIN_EMAIL: "admin@senzr.com"
+  ADMIN_PASSWORD: "DirectusAdmin123!"
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: directus-production-config
+  namespace: senzr
+data:
+  DB_CLIENT: "pg"
+  DB_HOST: "pgbouncer-service.senzr.svc.cluster.local"
+  DB_PORT: "5432"
+  DB_DATABASE: "postgres"
+  DB_USER: "directus_admin"
+  PUBLIC_URL: "http://ad5b1eb3b1fff4345bd4d4be7065213f-272763669.ap-south-1.elb.amazonaws.com:8000"
+  CORS_ENABLED: "true"
+  CORS_ORIGIN: "true"
+  HOST: "0.0.0.0"
+  PORT: "8055"
+  LOG_LEVEL: "info"
+  STORAGE_LOCATIONS: "s3"
+  STORAGE_S3_DRIVER: "s3"
+  STORAGE_S3_REGION: "ap-south-1"
+  STORAGE_S3_BUCKET: "senzr-media-files-202505231554"
+  CACHE_ENABLED: "false"
+  DB_SSL: "false"
+  DB_SSL_REJECT_UNAUTHORIZED: "false"
+  NODE_TLS_REJECT_UNAUTHORIZED: "0"

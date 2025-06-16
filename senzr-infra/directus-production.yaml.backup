@@ -1,0 +1,103 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: directus-secrets
+  namespace: senzr
+type: Opaque
+stringData:
+  DB_PASSWORD: "DirectusSecure123!"
+  KEY: "directus-super-secret-key-2024-production"
+  SECRET: "directus-admin-secret-token-2024"
+  ADMIN_EMAIL: "admin@senzr.com"
+  ADMIN_PASSWORD: "DirectusAdmin123!"
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: directus-production-config
+  namespace: senzr
+data:
+  DB_CLIENT: "pg"
+  DB_HOST: "directus-postgres.cjguq2ma02dv.ap-south-1.rds.amazonaws.com"
+  DB_PORT: "5432"
+  DB_DATABASE: "postgres"
+  DB_USER: "directus_admin"
+  PUBLIC_URL: "http://a828beffd07b84e0381a1c3f577f116f-1638030890.ap-south-1.elb.amazonaws.com:8000"
+  CORS_ENABLED: "true"
+  CORS_ORIGIN: "true"
+  HOST: "0.0.0.0"
+  PORT: "8055"
+  LOG_LEVEL: "info"
+  STORAGE_LOCATIONS: "s3"
+  STORAGE_S3_DRIVER: "s3"
+  STORAGE_S3_REGION: "ap-south-1"
+  STORAGE_S3_BUCKET: "senzr-media-files-202505231554"
+  CACHE_ENABLED: "false"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: directus-production
+  namespace: senzr
+  labels:
+    app: directus-production
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: directus-production
+  template:
+    metadata:
+      labels:
+        app: directus-production
+    spec:
+      containers:
+      - name: directus
+        image: directus/directus:10.10.4
+        ports:
+        - containerPort: 8055
+        envFrom:
+        - configMapRef:
+            name: directus-production-config
+        - secretRef:
+            name: directus-secrets
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /server/health
+            port: 8055
+          initialDelaySeconds: 180
+          periodSeconds: 30
+          timeoutSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /server/health
+            port: 8055
+          initialDelaySeconds: 120
+          periodSeconds: 15
+          timeoutSeconds: 10
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: directus-production-service
+  namespace: senzr
+  labels:
+    app: directus-production
+spec:
+  selector:
+    app: directus-production
+  ports:
+  - name: http
+    port: 8055
+    targetPort: 8055
+  type: ClusterIP

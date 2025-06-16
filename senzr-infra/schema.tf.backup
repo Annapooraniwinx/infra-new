@@ -1,0 +1,9432 @@
+# Terraform configuration generated from Directus schema
+# Generated on: 2025-06-06T11:22:49.984Z
+# Directus version: 11.6.1
+# Database vendor: postgres
+
+terraform {
+  required_providers {
+    postgresql = {
+      source  = "cyrilgdn/postgresql"
+      version = "~> 1.0"
+    }
+  }
+}
+
+# Table: AttendanceSetting
+resource "postgresql_table" "AttendanceSetting" {
+  name      = "AttendanceSetting"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('AttendanceSetting_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "photoEntry"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "mon"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "tue"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "wed"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "thu"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "fri"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "sat"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "sun"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "isMonday"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "isTuesday"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "isWednesday"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "isThursday"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "isFriday"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "isSaturday"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "isSunday"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "configName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "state"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "monJ"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "tueJ"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "wedJ"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "thuJ"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "friJ"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "satJ"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "sunJ"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: AttendanceSetting_branch
+resource "postgresql_table" "AttendanceSetting_branch" {
+  name      = "AttendanceSetting_branch"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('AttendanceSetting_branch_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "AttendanceSetting_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "branch_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: AttendanceSetting_mon
+resource "postgresql_table" "AttendanceSetting_mon" {
+  name      = "AttendanceSetting_mon"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('AttendanceSetting_mon_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "AttendanceSetting_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "item"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "collection"
+    type = "VARCHAR(255)"
+  }
+  
+}
+
+# Table: AttendanceSetting_shifts
+resource "postgresql_table" "AttendanceSetting_shifts" {
+  name      = "AttendanceSetting_shifts"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('AttendanceSetting_shifts_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "AttendanceSetting_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "shifts_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: AttendanceSetting_shifts_1
+resource "postgresql_table" "AttendanceSetting_shifts_1" {
+  name      = "AttendanceSetting_shifts_1"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('AttendanceSetting_shifts_1_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "AttendanceSetting_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "shifts_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: AttendanceSetting_shifts_2
+resource "postgresql_table" "AttendanceSetting_shifts_2" {
+  name      = "AttendanceSetting_shifts_2"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('AttendanceSetting_shifts_2_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "AttendanceSetting_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "shifts_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: AttendanceSetting_shifts_3
+resource "postgresql_table" "AttendanceSetting_shifts_3" {
+  name      = "AttendanceSetting_shifts_3"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('AttendanceSetting_shifts_3_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "AttendanceSetting_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "shifts_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: AttendanceSetting_shifts_4
+resource "postgresql_table" "AttendanceSetting_shifts_4" {
+  name      = "AttendanceSetting_shifts_4"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('AttendanceSetting_shifts_4_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "AttendanceSetting_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "shifts_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: AttendanceSetting_shifts_5
+resource "postgresql_table" "AttendanceSetting_shifts_5" {
+  name      = "AttendanceSetting_shifts_5"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('AttendanceSetting_shifts_5_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "AttendanceSetting_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "shifts_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: AttendanceSetting_shifts_6
+resource "postgresql_table" "AttendanceSetting_shifts_6" {
+  name      = "AttendanceSetting_shifts_6"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('AttendanceSetting_shifts_6_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "AttendanceSetting_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "shifts_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: AttendanceSetting_shifts_7
+resource "postgresql_table" "AttendanceSetting_shifts_7" {
+  name      = "AttendanceSetting_shifts_7"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('AttendanceSetting_shifts_7_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "AttendanceSetting_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "shifts_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: Crops
+resource "postgresql_table" "Crops" {
+  name      = "Crops"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('Crops_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "CropPhoto"
+    type = "UUID"
+  }
+  
+  column {
+    name = "CropName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "CropDuration"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "YieldPerAcre"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: FAQ
+resource "postgresql_table" "FAQ" {
+  name      = "FAQ"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('FAQ_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "question"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "answer"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: SalaryBreakdown
+resource "postgresql_table" "SalaryBreakdown" {
+  name      = "SalaryBreakdown"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('SalaryBreakdown_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "basicPay"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "professionalTax"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "employee"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "basicSalary"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "totalEarnings"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "totalDeductions"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "netSalary"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "earnings"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "employeeDeduction"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "deduction"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "employersContribution"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "employerLwf"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "employeeLwf"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "employeradmin"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "anualEarnings"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "annualDeduction"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "ctc"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "benefitsDetails"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "benefitsManual"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "voluntaryPF"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "individualDeduction"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "voluntaryPFAmount"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "salaryArrears"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: accesslevels
+resource "postgresql_table" "accesslevels" {
+  name      = "accesslevels"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('accesslevels_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "accessLevelNumber"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "accessLevelName"
+    type = "VARCHAR(255)"
+    not_null = true
+  }
+  
+  column {
+    name = "wrkHrs"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "_24hrs"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "holidays"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "uniqueId"
+    type = "TEXT"
+  }
+  
+  column {
+    name = "accessType"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "controllerStatus"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "accessLevelBitmap"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "doorBitmap"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "assignedDoors"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "maxWorkHours"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "workingHours"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "configName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "assignedBranches"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "areaType"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "state"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "groupType"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "assignDoorsGroup"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "assignDevicesGroup"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: accesslevels_branch
+resource "postgresql_table" "accesslevels_branch" {
+  name      = "accesslevels_branch"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('accesslevels_branch_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "accesslevels_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "branch_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: accesslevels_branch_1
+resource "postgresql_table" "accesslevels_branch_1" {
+  name      = "accesslevels_branch_1"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('accesslevels_branch_1_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "accesslevels_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "branch_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: accesslevels_doors_2
+resource "postgresql_table" "accesslevels_doors_2" {
+  name      = "accesslevels_doors_2"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('accesslevels_doors_2_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "accesslevels_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "doors_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: accesslevels_holiday
+resource "postgresql_table" "accesslevels_holiday" {
+  name      = "accesslevels_holiday"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('accesslevels_holiday_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "accesslevels_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "holiday_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: accesslevels_time
+resource "postgresql_table" "accesslevels_time" {
+  name      = "accesslevels_time"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('accesslevels_time_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "accesslevels_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "time_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: accesslevels_translations
+resource "postgresql_table" "accesslevels_translations" {
+  name      = "accesslevels_translations"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('accesslevels_translations_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "accesslevels_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "languages_code"
+    type = "VARCHAR(255)"
+  }
+  
+}
+
+# Table: accessusers
+resource "postgresql_table" "accessusers" {
+  name      = "accessusers"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('accessusers_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "name"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "rfidCard1"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: actions
+resource "postgresql_table" "actions" {
+  name      = "actions"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('actions_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "actionType"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "location"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "userDetails"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: actions_personalModule
+resource "postgresql_table" "actions_personalModule" {
+  name      = "actions_personalModule"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('actions_personalModule_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "actions_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: actions_personalModule_1
+resource "postgresql_table" "actions_personalModule_1" {
+  name      = "actions_personalModule_1"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('actions_personalModule_1_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "actions_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: actions_personalModule_2
+resource "postgresql_table" "actions_personalModule_2" {
+  name      = "actions_personalModule_2"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('actions_personalModule_2_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "actions_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: actions_personalModule_3
+resource "postgresql_table" "actions_personalModule_3" {
+  name      = "actions_personalModule_3"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('actions_personalModule_3_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "actions_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: aiFaceId
+resource "postgresql_table" "aiFaceId" {
+  name      = "aiFaceId"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('aiFaceId_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "assignedTo"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "base64Data"
+    type = "TEXT"
+  }
+  
+  column {
+    name = "faceId"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: alert
+resource "postgresql_table" "alert" {
+  name      = "alert"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('alert_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "roles"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "push"
+    type = "BOOLEAN"
+    default = "true"
+  }
+  
+  column {
+    name = "e_mail"
+    type = "BOOLEAN"
+    default = "true"
+  }
+  
+  column {
+    name = "sms"
+    type = "BOOLEAN"
+    default = "true"
+  }
+  
+  column {
+    name = "notifications"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: alert_directus_roles
+resource "postgresql_table" "alert_directus_roles" {
+  name      = "alert_directus_roles"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('alert_directus_roles_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "alert_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "directus_roles_id"
+    type = "UUID"
+  }
+  
+}
+
+# Table: alert_notifications
+resource "postgresql_table" "alert_notifications" {
+  name      = "alert_notifications"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('alert_notifications_id_seq'::regclass)"
+  }
+  
+}
+
+# Table: alert_notifications_1
+resource "postgresql_table" "alert_notifications_1" {
+  name      = "alert_notifications_1"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('alert_notifications_1_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "alert_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "notifications_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: attendance
+resource "postgresql_table" "attendance" {
+  name      = "attendance"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('attendance_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "inTime"
+    type = "TIME"
+  }
+  
+  column {
+    name = "outTime"
+    type = "TIME"
+  }
+  
+  column {
+    name = "date"
+    type = "DATE"
+  }
+  
+  column {
+    name = "attendance"
+    type = "VARCHAR(255)"
+    not_null = true
+  }
+  
+  column {
+    name = "employeeId"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "day"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "mode"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "branch"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "lat"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "lng"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "faceid"
+    type = "UUID"
+  }
+  
+  column {
+    name = "workHours"
+    type = "TIME"
+  }
+  
+  column {
+    name = "earlyDeparture"
+    type = "TIME"
+  }
+  
+  column {
+    name = "uniqueId"
+    type = "TEXT"
+  }
+  
+  column {
+    name = "overTime"
+    type = "TIME"
+  }
+  
+  column {
+    name = "breakTime"
+    type = "TIME"
+  }
+  
+  column {
+    name = "lateBy"
+    type = "TIME"
+  }
+  
+  column {
+    name = "onTime"
+    type = "TIME"
+  }
+  
+  column {
+    name = "leaveType"
+    type = "VARCHAR(255)"
+    default = "none"
+  }
+  
+  column {
+    name = "action"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "attendanceContext"
+    type = "VARCHAR(255)"
+    default = "nothing"
+  }
+  
+  column {
+    name = "location"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+}
+
+# Table: attendanceCycle
+resource "postgresql_table" "attendanceCycle" {
+  name      = "attendanceCycle"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('attendanceCycle_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "fixedCycle"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "includeWeekoffs"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "includeHolidays"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "startMonth"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "endMonth"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "startDate"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "endDate"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+}
+
+# Table: attendancePolicies
+resource "postgresql_table" "attendancePolicies" {
+  name      = "attendancePolicies"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('attendancePolicies_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "locationCentric"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "entryTimeLimit"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "exitTimeLimit"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "lateEntryAllowed"
+    type = "INTEGER"
+    default = "1"
+  }
+  
+  column {
+    name = "earlyExitAllowed"
+    type = "INTEGER"
+    default = "1"
+  }
+  
+  column {
+    name = "fixedCycle"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "startDate"
+    type = "INTEGER"
+    default = "1"
+  }
+  
+  column {
+    name = "endDate"
+    type = "INTEGER"
+    default = "1"
+  }
+  
+  column {
+    name = "includeWeekOffs"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "includeHolidays"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "extraHoursPay"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "weekOffPay"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "publicHolidayPay"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "lateEntryPenalty"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "earlyExitPenalty"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "lateEntryPenaltyAmt"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "earlyExitPenaltyAmt"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "setExitTimeLimit"
+    type = "TIME"
+    default = "12:00:00"
+  }
+  
+  column {
+    name = "setEntryTimeLimit"
+    type = "TIME"
+    default = "12:00:00"
+  }
+  
+  column {
+    name = "shiftType"
+    type = "VARCHAR(255)"
+    default = "fixed"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "attendanceCycle"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "workingHoursType"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "wrkHoursDayMode"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "LateCommingDayMode"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "workinghrsDaysLimit"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "earlyLeavingDayMode"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "earlyLeavingType"
+    type = "VARCHAR(255)"
+    default = "amount"
+  }
+  
+  column {
+    name = "lateComingType"
+    type = "VARCHAR(255)"
+    default = "amount"
+  }
+  
+  column {
+    name = "isOverTime"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "setOverTimeLimit"
+    type = "TIME"
+    default = "12:00:00"
+  }
+  
+  column {
+    name = "isWorkingHours"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "setMinWorkingHours"
+    type = "TIME"
+    default = "12:00:00"
+  }
+  
+  column {
+    name = "workingHoursAmount"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "faceCentric"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "workingRange"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "DATE"
+  }
+  
+}
+
+# Table: attendance_holiday
+resource "postgresql_table" "attendance_holiday" {
+  name      = "attendance_holiday"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('attendance_holiday_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "attendance_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "holiday_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: attendance_inn
+resource "postgresql_table" "attendance_inn" {
+  name      = "attendance_inn"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('attendance_inn_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "attendance_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "item"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "collection"
+    type = "VARCHAR(255)"
+  }
+  
+}
+
+# Table: attendance_personalModule
+resource "postgresql_table" "attendance_personalModule" {
+  name      = "attendance_personalModule"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('attendance_personalModule_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "attendance_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: bgVerification
+resource "postgresql_table" "bgVerification" {
+  name      = "bgVerification"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('bgVerification_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "employee"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "verifiedData"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: bookmark
+resource "postgresql_table" "bookmark" {
+  name      = "bookmark"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('bookmark_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "pageName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "searchValue"
+    type = "VARCHAR(255)"
+    not_null = true
+  }
+  
+  column {
+    name = "filterSelected"
+    type = "VARCHAR(255)"
+    default = "ALL"
+  }
+  
+  column {
+    name = "limit"
+    type = "INTEGER"
+    default = "25"
+  }
+  
+  column {
+    name = "user"
+    type = "VARCHAR(255)"
+    default = "unknown"
+  }
+  
+  column {
+    name = "queryNumber"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: branch
+resource "postgresql_table" "branch" {
+  name      = "branch"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('branch_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "branchId"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "branchName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "address"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "lat"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "lng"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "uniqueId"
+    type = "TEXT"
+  }
+  
+  column {
+    name = "state"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "areaType"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: branch_holiday
+resource "postgresql_table" "branch_holiday" {
+  name      = "branch_holiday"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('branch_holiday_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "branch_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "holiday_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: cardManagement
+resource "postgresql_table" "cardManagement" {
+  name      = "cardManagement"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('cardManagement_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "rfidCard"
+    type = "BIGINT"
+    not_null = true
+  }
+  
+  column {
+    name = "type"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "cardAccess"
+    type = "BOOLEAN"
+    default = "true"
+  }
+  
+  column {
+    name = "uniqueId"
+    type = "TEXT"
+  }
+  
+  column {
+    name = "accessLevelsId"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "cardAccessLevelArray"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "cardAccessLevelHex"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "employeeId"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: carryForward
+resource "postgresql_table" "carryForward" {
+  name      = "carryForward"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('carryForward_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "sick"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "casual"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "privileged"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "paid"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "unpaid"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "assignedTo"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: company
+resource "postgresql_table" "company" {
+  name      = "company"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('company_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "companyName"
+    type = "VARCHAR(255)"
+    default = "unknown"
+  }
+  
+}
+
+# Table: config
+resource "postgresql_table" "config" {
+  name      = "config"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('config_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "attendanceSettings"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "configName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "salarySettings"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "holidaySettings"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "attendancePolicies"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "leave"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "defaultConfig"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "leaveSettings"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "holidaySettingsJ"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: config_AttendanceSetting
+resource "postgresql_table" "config_AttendanceSetting" {
+  name      = "config_AttendanceSetting"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('config_AttendanceSetting_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "config_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "AttendanceSetting_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: config_AttendanceSetting_1
+resource "postgresql_table" "config_AttendanceSetting_1" {
+  name      = "config_AttendanceSetting_1"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('config_AttendanceSetting_1_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "config_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "AttendanceSetting_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: config_holiday
+resource "postgresql_table" "config_holiday" {
+  name      = "config_holiday"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('config_holiday_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "config_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "holiday_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: controllers
+resource "postgresql_table" "controllers" {
+  name      = "controllers"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "VARCHAR(255)"
+    not_null = true
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    default = "unApproved"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "ip_address"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "delayValue"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "ledPin"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "controllerIP"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "serverIp"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "controllerName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "controllerType"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "doorMode"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "timerMode"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "interlockMode"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "antiPassbackMode"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "controllerImage"
+    type = "UUID"
+  }
+  
+  column {
+    name = "assignedAccessLevel"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "assignedBranch"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "branch"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "assignedDoor"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "sn"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "time_difference"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "interval"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "parkingMode"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "deviceVersion"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "password"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "heartBeatInterval"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "faceDetectionInterval"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "controllerStatus"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "attendanceMode"
+    type = "VARCHAR(255)"
+    default = "in"
+  }
+  
+  column {
+    name = "deviceGroup"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "assignedDoors"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: controllers_accesslevels
+resource "postgresql_table" "controllers_accesslevels" {
+  name      = "controllers_accesslevels"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('controllers_accesslevels_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "controllers_id"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "accesslevels_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: controllers_branch
+resource "postgresql_table" "controllers_branch" {
+  name      = "controllers_branch"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('controllers_branch_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "controllers_id"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "branch_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: controllers_directus_users
+resource "postgresql_table" "controllers_directus_users" {
+  name      = "controllers_directus_users"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('controllers_directus_users_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "controllers_id"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "directus_users_id"
+    type = "UUID"
+  }
+  
+}
+
+# Table: controllers_doors
+resource "postgresql_table" "controllers_doors" {
+  name      = "controllers_doors"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('controllers_doors_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "controllers_id"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "doors_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: controllers_doors_1
+resource "postgresql_table" "controllers_doors_1" {
+  name      = "controllers_doors_1"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('controllers_doors_1_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "controllers_id"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "doors_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: countryCode
+resource "postgresql_table" "countryCode" {
+  name      = "countryCode"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('countryCode_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "CountryName"
+    type = "VARCHAR(255)"
+    default = "''Not Mentioned''"
+  }
+  
+  column {
+    name = "CountryCode"
+    type = "VARCHAR(255)"
+    default = "''''Not Mentioned''''"
+  }
+  
+  column {
+    name = "numberLimit"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: cronJobs
+resource "postgresql_table" "cronJobs" {
+  name      = "cronJobs"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('cronJobs_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "pending"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "startTime"
+    type = "TIME"
+  }
+  
+  column {
+    name = "endTime"
+    type = "TIME"
+  }
+  
+  column {
+    name = "date"
+    type = "DATE"
+  }
+  
+  column {
+    name = "message"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: customers
+resource "postgresql_table" "customers" {
+  name      = "customers"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('customers_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "customerName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "format"
+    type = "VARCHAR(255)"
+    default = "text"
+  }
+  
+  column {
+    name = "email"
+    type = "VARCHAR(255)"
+    default = "@email"
+  }
+  
+  column {
+    name = "company"
+    type = "VARCHAR(255)"
+    default = "none"
+  }
+  
+  column {
+    name = "servicePerson"
+    type = "VARCHAR(255)"
+    default = "no"
+  }
+  
+  column {
+    name = "products"
+    type = "VARCHAR(255)"
+    default = "--"
+  }
+  
+  column {
+    name = "date"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "lat"
+    type = "VARCHAR(255)"
+    default = "2.02000"
+  }
+  
+  column {
+    name = "lng"
+    type = "VARCHAR(255)"
+    default = "1.2000"
+  }
+  
+  column {
+    name = "phone"
+    type = "VARCHAR(255)"
+    default = "''0''"
+  }
+  
+  column {
+    name = "dateCreated"
+    type = "DATE"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "customersProductListId"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "location"
+    type = "VARCHAR(255)"
+    default = "notset"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "gstNumber"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "siteType"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "image"
+    type = "UUID"
+  }
+  
+}
+
+# Table: customersProducts
+resource "postgresql_table" "customersProducts" {
+  name      = "customersProducts"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('customersProducts_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "installationDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "warrantyPeriod"
+    type = "VARCHAR(255)"
+    default = "none"
+  }
+  
+  column {
+    name = "assignedCustomer"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "assignedProducts"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "assignedServicePerson"
+    type = "JSONB"
+  }
+  
+}
+
+# Table: customersProducts_assigned
+resource "postgresql_table" "customersProducts_assigned" {
+  name      = "customersProducts_assigned"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('customersProducts_assigned_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "customersProducts_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "item"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "collection"
+    type = "VARCHAR(255)"
+  }
+  
+}
+
+# Table: dealers
+resource "postgresql_table" "dealers" {
+  name      = "dealers"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('dealers_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "dealerAccess"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "requestedBy"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: department
+resource "postgresql_table" "department" {
+  name      = "department"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('department_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "departmentId"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "departmentName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "branch"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "uniqueId"
+    type = "TEXT"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: deviceManager
+resource "postgresql_table" "deviceManager" {
+  name      = "deviceManager"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('deviceManager_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "deviceName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "model"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "deviceIp"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "serverIPUrl"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "image"
+    type = "UUID"
+  }
+  
+  column {
+    name = "uniqueId"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "assignedAccessLevels"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "installedLocation"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "assignedBranch"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "deviceType"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: deviceManager_accesslevels
+resource "postgresql_table" "deviceManager_accesslevels" {
+  name      = "deviceManager_accesslevels"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('deviceManager_accesslevels_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "deviceManager_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "accesslevels_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: deviceManager_branch
+resource "postgresql_table" "deviceManager_branch" {
+  name      = "deviceManager_branch"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('deviceManager_branch_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "deviceManager_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "branch_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: deviceManager_department
+resource "postgresql_table" "deviceManager_department" {
+  name      = "deviceManager_department"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('deviceManager_department_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "deviceManager_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "department_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: doors
+resource "postgresql_table" "doors" {
+  name      = "doors"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('doors_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "doorNumber"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "doorName"
+    type = "VARCHAR(255)"
+    not_null = true
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "branch"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "doorType"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "uniqueId"
+    type = "TEXT"
+  }
+  
+  column {
+    name = "doorAccess"
+    type = "BOOLEAN"
+    default = "true"
+  }
+  
+  column {
+    name = "accesslevels"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "assignedDepts"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "doorGroup"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: doors_accesslevels
+resource "postgresql_table" "doors_accesslevels" {
+  name      = "doors_accesslevels"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('doors_accesslevels_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "doors_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "accesslevels_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: doors_department
+resource "postgresql_table" "doors_department" {
+  name      = "doors_department"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('doors_department_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "doors_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "department_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: doors_tenant
+resource "postgresql_table" "doors_tenant" {
+  name      = "doors_tenant"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('doors_tenant_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "doors_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: expenseReimbursement
+resource "postgresql_table" "expenseReimbursement" {
+  name      = "expenseReimbursement"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('expenseReimbursement_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "requestedBy"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "itemizedExpenses"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "subTotal"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "advancePayment"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "totalReimbursement"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "notes"
+    type = "VARCHAR(255)"
+    default = "Empty"
+  }
+  
+  column {
+    name = "signature"
+    type = "UUID"
+  }
+  
+  column {
+    name = "fromDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "toDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "taskID"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "receipts"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "taskExpense"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "reimbBy"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "date"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "receiptsJ"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "fromLat"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "fromLng"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "toLng"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "toLat"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "distanceKm"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "ModeOfTransport"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: expenseReimbursement_files
+resource "postgresql_table" "expenseReimbursement_files" {
+  name      = "expenseReimbursement_files"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('expenseReimbursement_files_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "expenseReimbursement_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "directus_files_id"
+    type = "UUID"
+  }
+  
+}
+
+# Table: export
+resource "postgresql_table" "export" {
+  name      = "export"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('export_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "startDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "endDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "generatedFile"
+    type = "UUID"
+  }
+  
+  column {
+    name = "collectionName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "branch"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "generateAutomatically"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "exportingDays"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "7days"
+  }
+  
+  column {
+    name = "department"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "reportType"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "fileFormat"
+    type = "VARCHAR(255)"
+    default = "JSON"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: faceId
+resource "postgresql_table" "faceId" {
+  name      = "faceId"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('faceId_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "facialData"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "assignedTo"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "faceEmbedding"
+    type = "JSONB"
+    default = ""
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: facialData
+resource "postgresql_table" "facialData" {
+  name      = "facialData"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('facialData_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "face"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: flexibleShift
+resource "postgresql_table" "flexibleShift" {
+  name      = "flexibleShift"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('flexibleShift_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "shiftDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "shifts"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "employee"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: flexibleShift_shifts
+resource "postgresql_table" "flexibleShift_shifts" {
+  name      = "flexibleShift_shifts"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('flexibleShift_shifts_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "flexibleShift_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "shifts_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: holiday
+resource "postgresql_table" "holiday" {
+  name      = "holiday"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('holiday_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "event"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "branch"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "date"
+    type = "DATE"
+  }
+  
+  column {
+    name = "IND"
+    type = "BOOLEAN"
+    default = "true"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: holiday_branch
+resource "postgresql_table" "holiday_branch" {
+  name      = "holiday_branch"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('holiday_branch_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "holiday_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "branch_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: import
+resource "postgresql_table" "import" {
+  name      = "import"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('import_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "pending"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "collectionName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "generatedFile"
+    type = "UUID"
+  }
+  
+  column {
+    name = "branch"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "generateAutomatically"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: junction_directus_users_previousRecord
+resource "postgresql_table" "junction_directus_users_previousRecord" {
+  name      = "junction_directus_users_previousRecord"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('junction_directus_users_previousRecord_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "directus_users_id"
+    type = "UUID"
+  }
+  
+  column {
+    name = "previousRecord_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: languages
+resource "postgresql_table" "languages" {
+  name      = "languages"
+  schema    = "public"
+  
+  column {
+    name = "code"
+    type = "VARCHAR(255)"
+    not_null = true
+  }
+  
+  column {
+    name = "name"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "direction"
+    type = "VARCHAR(255)"
+    default = "ltr"
+  }
+  
+}
+
+# Table: leave
+resource "postgresql_table" "leave" {
+  name      = "leave"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('leave_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "leaveBalance"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "assignedTo"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "leaveTaken"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "CarryForwardleave"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: leaveRequest
+resource "postgresql_table" "leaveRequest" {
+  name      = "leaveRequest"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "UUID"
+    not_null = true
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "pending"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "fromDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "toDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "halfDay"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "reason"
+    type = "VARCHAR(255)"
+    default = "none"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "requestedBy"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "requestedDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "document"
+    type = "UUID"
+  }
+  
+  column {
+    name = "leaveType"
+    type = "VARCHAR(255)"
+    default = "sickLeave"
+  }
+  
+  column {
+    name = "remaining"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "quarterDay"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "location"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: leaveSetting
+resource "postgresql_table" "leaveSetting" {
+  name      = "leaveSetting"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('leaveSetting_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "iscarryForward"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "sickLeave"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "casualLeave"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "privilegedLeave"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "paid"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "unpaid"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "startDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "endDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "LeaveEntitlement"
+    type = "VARCHAR(255)"
+    default = "yearly"
+  }
+  
+  column {
+    name = "condition"
+    type = "VARCHAR(255)"
+    default = "applicable"
+  }
+  
+  column {
+    name = "workingDaysBase"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "yearOfPolicy"
+    type = "DATE"
+  }
+  
+  column {
+    name = "monthOfPolicy"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "paidLeave"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "unpaidLeave"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "leaveName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "leaveType"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "leaveConfig"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "leaveNameMirror"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: liveTracking
+resource "postgresql_table" "liveTracking" {
+  name      = "liveTracking"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('liveTracking_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "timestamp"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "employee_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "liveTracking"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "gps"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "deviceId"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: location_actions
+resource "postgresql_table" "location_actions" {
+  name      = "location_actions"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('location_actions_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "actions_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "location_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: logs
+resource "postgresql_table" "logs" {
+  name      = "logs"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('logs_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "timeStamp"
+    type = "TIME"
+  }
+  
+  column {
+    name = "date"
+    type = "DATE"
+  }
+  
+  column {
+    name = "action"
+    type = "VARCHAR(255)"
+    default = "unauthorized"
+  }
+  
+  column {
+    name = "mode"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "door"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "employeeId"
+    type = "INTEGER"
+    not_null = true
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "branch"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "lat"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "lng"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "inRange"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "faceId"
+    type = "UUID"
+  }
+  
+  column {
+    name = "msgType"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "sn"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "name"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "employeeIdDevice"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "personUuid"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "rfid"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "uniqueId"
+    type = "TEXT"
+  }
+  
+  column {
+    name = "base64Data"
+    type = "TEXT"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: logs_personalModule
+resource "postgresql_table" "logs_personalModule" {
+  name      = "logs_personalModule"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('logs_personalModule_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "logs_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: logs_personalModule_1
+resource "postgresql_table" "logs_personalModule_1" {
+  name      = "logs_personalModule_1"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('logs_personalModule_1_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "logs_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: logs_personalModule_2
+resource "postgresql_table" "logs_personalModule_2" {
+  name      = "logs_personalModule_2"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('logs_personalModule_2_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "logs_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: model
+resource "postgresql_table" "model" {
+  name      = "model"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('model_id_seq'::regclass)"
+  }
+  
+}
+
+# Table: notifications
+resource "postgresql_table" "notifications" {
+  name      = "notifications"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('notifications_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "message"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: payment
+resource "postgresql_table" "payment" {
+  name      = "payment"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('payment_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "tenantBankDetails"
+    type = "UUID"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: payrollVerification
+resource "postgresql_table" "payrollVerification" {
+  name      = "payrollVerification"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('payrollVerification_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "attendaceVerification"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "salaryVerification"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "employee"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "endDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "startDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "loanRepayment"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "earnings"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "deductions"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "payableAmount"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "ctc"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "benefits"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "penalties"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "otherDeduction"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "employerPF"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "employerESI"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "employeePF"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "employeeESI"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "professionalTax"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "laborWelfareFund"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "downloadablePdf"
+    type = "UUID"
+  }
+  
+  column {
+    name = "employerlwf"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "employeelwf"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "netSalary"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "pending"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "BasicPay"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "payableDays"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "adminCharges"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "totalEarnings"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "totalOtherDeduction"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "complienceDeduction"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "totalAttendanceCount"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "lockedPaidUsers"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "tdsAmount"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "salaryPaid"
+    type = "VARCHAR(255)"
+    default = "unPaid"
+  }
+  
+  column {
+    name = "totalBenefits"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "finalizeDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "paidDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "individualDeduction"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule
+resource "postgresql_table" "personalModule" {
+  name      = "personalModule"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    default = "inactive"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "employeeId"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "accessOn"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "assignedCards"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "assignedDepartment"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "assignedBranch"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "assignedTag"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "workingRange"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "locationCentric"
+    type = "VARCHAR(255)"
+    default = "false"
+  }
+  
+  column {
+    name = "assignedUser"
+    type = "UUID"
+  }
+  
+  column {
+    name = "uniqueId"
+    type = "TEXT"
+  }
+  
+  column {
+    name = "controllerStatus"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "grade"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "attendanceSettings"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "config"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "holidaySettings"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "attendancePolicies"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "accountDetails"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "previousRecord"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "salaryConfig"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "shiftwise"
+    type = "VARCHAR(255)"
+    default = "fixed"
+  }
+  
+  column {
+    name = "leaves"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "playerId"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "attendancePolicyHistory"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "assignedAccessLevels"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "tdsDeduction"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "assignedFaceEmbedding"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "taskCreate"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "clientCreate"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "allowPF"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "allowESI"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "allowLwf"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "holidaySettingsJ"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "branch"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "department"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "assignedFaceEmbed"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "assignedAccessLevel"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "tutorial"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+}
+
+# Table: personalModule_AttendanceSetting
+resource "postgresql_table" "personalModule_AttendanceSetting" {
+  name      = "personalModule_AttendanceSetting"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_AttendanceSetting_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "AttendanceSetting_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_accesslevels
+resource "postgresql_table" "personalModule_accesslevels" {
+  name      = "personalModule_accesslevels"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_accesslevels_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "accesslevels_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_accesslevels_1
+resource "postgresql_table" "personalModule_accesslevels_1" {
+  name      = "personalModule_accesslevels_1"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_accesslevels_1_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "accesslevels_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_accesslevels_2
+resource "postgresql_table" "personalModule_accesslevels_2" {
+  name      = "personalModule_accesslevels_2"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_accesslevels_2_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "accesslevels_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_accesslevels_3
+resource "postgresql_table" "personalModule_accesslevels_3" {
+  name      = "personalModule_accesslevels_3"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_accesslevels_3_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "accesslevels_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_aiFaceId
+resource "postgresql_table" "personalModule_aiFaceId" {
+  name      = "personalModule_aiFaceId"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_aiFaceId_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "aiFaceId_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_branch
+resource "postgresql_table" "personalModule_branch" {
+  name      = "personalModule_branch"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_branch_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "branch_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_branch_1
+resource "postgresql_table" "personalModule_branch_1" {
+  name      = "personalModule_branch_1"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_branch_1_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "branch_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_branch_2
+resource "postgresql_table" "personalModule_branch_2" {
+  name      = "personalModule_branch_2"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_branch_2_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "branch_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_branch_3
+resource "postgresql_table" "personalModule_branch_3" {
+  name      = "personalModule_branch_3"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_branch_3_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "branch_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_branch_4
+resource "postgresql_table" "personalModule_branch_4" {
+  name      = "personalModule_branch_4"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_branch_4_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "branch_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_cardId
+resource "postgresql_table" "personalModule_cardId" {
+  name      = "personalModule_cardId"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_cardId_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "item"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "collection"
+    type = "VARCHAR(255)"
+  }
+  
+}
+
+# Table: personalModule_cardManagement
+resource "postgresql_table" "personalModule_cardManagement" {
+  name      = "personalModule_cardManagement"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_cardManagement_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "cardManagement_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_cardManagement_1
+resource "postgresql_table" "personalModule_cardManagement_1" {
+  name      = "personalModule_cardManagement_1"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_cardManagement_1_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "cardManagement_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_cardManagement_2
+resource "postgresql_table" "personalModule_cardManagement_2" {
+  name      = "personalModule_cardManagement_2"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_cardManagement_2_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "cardManagement_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_cardManagement_3
+resource "postgresql_table" "personalModule_cardManagement_3" {
+  name      = "personalModule_cardManagement_3"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_cardManagement_3_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "cardManagement_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_ddff
+resource "postgresql_table" "personalModule_ddff" {
+  name      = "personalModule_ddff"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_ddff_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "item"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "collection"
+    type = "VARCHAR(255)"
+  }
+  
+}
+
+# Table: personalModule_department
+resource "postgresql_table" "personalModule_department" {
+  name      = "personalModule_department"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_department_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "department_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_department_1
+resource "postgresql_table" "personalModule_department_1" {
+  name      = "personalModule_department_1"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_department_1_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "department_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_department_2
+resource "postgresql_table" "personalModule_department_2" {
+  name      = "personalModule_department_2"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_department_2_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "department_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_holiday
+resource "postgresql_table" "personalModule_holiday" {
+  name      = "personalModule_holiday"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_holiday_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "holiday_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_previousRecord
+resource "postgresql_table" "personalModule_previousRecord" {
+  name      = "personalModule_previousRecord"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_previousRecord_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "previousRecord_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_salarySetting
+resource "postgresql_table" "personalModule_salarySetting" {
+  name      = "personalModule_salarySetting"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_salarySetting_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "salarySetting_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_salarySetting_1
+resource "postgresql_table" "personalModule_salarySetting_1" {
+  name      = "personalModule_salarySetting_1"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_salarySetting_1_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "salarySetting_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_time
+resource "postgresql_table" "personalModule_time" {
+  name      = "personalModule_time"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_time_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "time_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_time_1
+resource "postgresql_table" "personalModule_time_1" {
+  name      = "personalModule_time_1"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_time_1_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "time_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_time_2
+resource "postgresql_table" "personalModule_time_2" {
+  name      = "personalModule_time_2"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_time_2_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "time_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_time_3
+resource "postgresql_table" "personalModule_time_3" {
+  name      = "personalModule_time_3"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_time_3_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "time_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: personalModule_time_4
+resource "postgresql_table" "personalModule_time_4" {
+  name      = "personalModule_time_4"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('personalModule_time_4_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "personalModule_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "time_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: perviousPolicy
+resource "postgresql_table" "perviousPolicy" {
+  name      = "perviousPolicy"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('perviousPolicy_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "locationCentric"
+    type = "BOOLEAN"
+    default = "true"
+  }
+  
+  column {
+    name = "entryTimeLimit"
+    type = "BOOLEAN"
+    default = "true"
+  }
+  
+  column {
+    name = "setEntryTimeLimit"
+    type = "TIME"
+  }
+  
+  column {
+    name = "lateEntryAllowed"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "exitTimeLimit"
+    type = "BOOLEAN"
+    default = "true"
+  }
+  
+  column {
+    name = "setExitTimeLimit"
+    type = "TIME"
+  }
+  
+  column {
+    name = "earlyExitAllowed"
+    type = "BOOLEAN"
+    default = "true"
+  }
+  
+  column {
+    name = "fixedCycle"
+    type = "BOOLEAN"
+    default = "true"
+  }
+  
+  column {
+    name = "startDate"
+    type = "INTEGER"
+    default = "1"
+  }
+  
+  column {
+    name = "endDate"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "includeWeekOffs"
+    type = "BOOLEAN"
+    default = "true"
+  }
+  
+  column {
+    name = "includeHolidays"
+    type = "BOOLEAN"
+    default = "true"
+  }
+  
+  column {
+    name = "extraHoursPay"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "weekOffPay"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "publicHolidayPay"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "lateEntryPenalty"
+    type = "BOOLEAN"
+    default = "true"
+  }
+  
+  column {
+    name = "lateEntryPenaltyAmt"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "earlyExitPenalty"
+    type = "BOOLEAN"
+    default = "true"
+  }
+  
+  column {
+    name = "earlyExitPenaltyAmt"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "shiftType"
+    type = "VARCHAR(255)"
+    default = "fixed"
+  }
+  
+  column {
+    name = "attendanceCycle"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "workingHoursType"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "wrkHoursDayMode"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "workinghrsDaysLimit"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "LateCommingDayMode"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "earlyLeavingDayMode"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "earlyLeavingType"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "lateComingType"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "isOverTime"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "setOverTimeLimit"
+    type = "TIME"
+  }
+  
+  column {
+    name = "isWorkingHours"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "setMinWorkingHours"
+    type = "TIME"
+  }
+  
+  column {
+    name = "workingHoursAmount"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "faceCentric"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "workingRange"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+}
+
+# Table: posts
+resource "postgresql_table" "posts" {
+  name      = "posts"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('posts_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "postName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "tags"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: previousRecord
+resource "postgresql_table" "previousRecord" {
+  name      = "previousRecord"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('previousRecord_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "companyName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "Designation"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "joiningDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "leavingDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "Currency"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "salary"
+    type = "FLOAT"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+}
+
+# Table: prodCategory
+resource "postgresql_table" "prodCategory" {
+  name      = "prodCategory"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('prodCategory_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "categoryName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: products
+resource "postgresql_table" "products" {
+  name      = "products"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('products_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "productName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "productId"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "servicePerson"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "warrantyPeriod"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "product"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "format"
+    type = "VARCHAR(255)"
+    default = "text"
+  }
+  
+  column {
+    name = "dateCreated"
+    type = "DATE"
+  }
+  
+  column {
+    name = "installedBy"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "taskId"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "serialNumber"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "prodName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "manual"
+    type = "UUID"
+  }
+  
+  column {
+    name = "warrantyDocument"
+    type = "UUID"
+  }
+  
+  column {
+    name = "technicalDocument"
+    type = "UUID"
+  }
+  
+  column {
+    name = "zipDocument"
+    type = "UUID"
+  }
+  
+  column {
+    name = "category"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "assignedto"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: profile
+resource "postgresql_table" "profile" {
+  name      = "profile"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('profile_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "picture"
+    type = "UUID"
+  }
+  
+}
+
+# Table: projectTracker
+resource "postgresql_table" "projectTracker" {
+  name      = "projectTracker"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('projectTracker_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "projectName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "taskName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "deadline"
+    type = "DATE"
+  }
+  
+  column {
+    name = "dependencies"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "priority"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "pendingFor"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "assignedTo"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "plan"
+    type = "UUID"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: projectTracker_directus_users
+resource "postgresql_table" "projectTracker_directus_users" {
+  name      = "projectTracker_directus_users"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('projectTracker_directus_users_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "projectTracker_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "directus_users_id"
+    type = "UUID"
+  }
+  
+}
+
+# Table: questions
+resource "postgresql_table" "questions" {
+  name      = "questions"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('questions_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "query"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: salarySetting
+resource "postgresql_table" "salarySetting" {
+  name      = "salarySetting"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('salarySetting_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "basicPay"
+    type = "INTEGER"
+    default = "100"
+  }
+  
+  column {
+    name = "earnings"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "deductions"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "employerContribution"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "advancedMode"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "allowances"
+    type = "JSONB"
+    default = "[object Object],[object Object],[object Object]"
+  }
+  
+  column {
+    name = "deduction"
+    type = "JSONB"
+    default = "[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
+  }
+  
+  column {
+    name = "professionalTax"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "LWF"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "employersContributions"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "employeeDeductions"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "configName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "adminCharges"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "payrollBranch"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "stateTaxes"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "zone"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "skillLevel"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "shopEstablishment"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "bonusConfig"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "incentiveConfig"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "retentionPayConfig"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "bonusManual"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "incentiveManual"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "retentionPayManual"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "voluntaryPF"
+    type = "JSONB"
+    default = "[object Object]"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: salarySetting_branch
+resource "postgresql_table" "salarySetting_branch" {
+  name      = "salarySetting_branch"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('salarySetting_branch_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "salarySetting_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "branch_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: salarySetting_tax
+resource "postgresql_table" "salarySetting_tax" {
+  name      = "salarySetting_tax"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('salarySetting_tax_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "salarySetting_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "tax_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: serviceManual
+resource "postgresql_table" "serviceManual" {
+  name      = "serviceManual"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('serviceManual_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "image"
+    type = "UUID"
+  }
+  
+  column {
+    name = "links-0ojjpl"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "category"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "debugSteps"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: servicePerson
+resource "postgresql_table" "servicePerson" {
+  name      = "servicePerson"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('servicePerson_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "servicePersonName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "mobileNumber"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+  }
+  
+}
+
+# Table: shifts
+resource "postgresql_table" "shifts" {
+  name      = "shifts"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('shifts_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "entryTime"
+    type = "TIME"
+    default = "09:00:00"
+  }
+  
+  column {
+    name = "exitTime"
+    type = "TIME"
+    default = "18:00:00"
+  }
+  
+  column {
+    name = "break"
+    type = "TIME"
+  }
+  
+  column {
+    name = "shift"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "breakTypes"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: status
+resource "postgresql_table" "status" {
+  name      = "status"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('status_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+  }
+  
+}
+
+# Table: subscribe
+resource "postgresql_table" "subscribe" {
+  name      = "subscribe"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('subscribe_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "email"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "phone"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "type"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "isActive"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: tasks
+resource "postgresql_table" "tasks" {
+  name      = "tasks"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('tasks_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "title"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "description"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "lat"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "lng"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "radiusInMeters"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "taskType"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "employeeId"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "clientId"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "from"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "taskimage"
+    type = "UUID"
+  }
+  
+  column {
+    name = "amountExpected"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "amountCollected"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "referenceNumber"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "paymentMode"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "deviceType"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "snNumber"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "demo"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "currentLat"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "currentLng"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "eAmountCollected"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "installPhoto"
+    type = "UUID"
+  }
+  
+  column {
+    name = "issueReport"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "partsReplaced"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "dueTime"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "prodName"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: tax
+resource "postgresql_table" "tax" {
+  name      = "tax"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('tax_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "state"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "stateTaxRules"
+    type = "JSONB"
+    default = "[object Object],[object Object]"
+  }
+  
+  column {
+    name = "skilled"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "highlySkilled"
+    type = "JSONB"
+  }
+  
+}
+
+# Table: tdsDeduction
+resource "postgresql_table" "tdsDeduction" {
+  name      = "tdsDeduction"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('tdsDeduction_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "regime"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "standardDeduction"
+    type = "BIGINT"
+    default = "75000"
+  }
+  
+  column {
+    name = "hraRent"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "homeLoan"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "leaveTravel"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "section80Deduction"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "homeLoanDeduction"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "homeLoanInvestment"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "taxableIncome"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "taxLiabilties"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "exemption"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "totalEarnings"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "totalDeductions"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "pastTds"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "deduction"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "employer"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "startDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "endDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "paidTax"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "healthEducation"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "rebate"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: tdsDeduction_files
+resource "postgresql_table" "tdsDeduction_files" {
+  name      = "tdsDeduction_files"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('tdsDeduction_files_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "tdsDeduction_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "directus_files_id"
+    type = "UUID"
+  }
+  
+}
+
+# Table: tdsDeduction_files_1
+resource "postgresql_table" "tdsDeduction_files_1" {
+  name      = "tdsDeduction_files_1"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('tdsDeduction_files_1_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "tdsDeduction_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "directus_files_id"
+    type = "UUID"
+  }
+  
+}
+
+# Table: tdsRules
+resource "postgresql_table" "tdsRules" {
+  name      = "tdsRules"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('tdsRules_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "oldRegime"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "newRegime"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: tenant
+resource "postgresql_table" "tenant" {
+  name      = "tenant"
+  schema    = "public"
+  
+  column {
+    name = "tenantId"
+    type = "UUID"
+    not_null = true
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "tenantName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "subscribedOn"
+    type = "DATE"
+  }
+  
+  column {
+    name = "renewedOn"
+    type = "DATE"
+  }
+  
+  column {
+    name = "doorLicense"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "userLicense"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "validity"
+    type = "DATE"
+  }
+  
+  column {
+    name = "panOrGst"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "pfAccount"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "esiAccount"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "shopAccount"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "bankName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "accountNumber"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "ifscCode"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "esiAccountNumber"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "foldersId"
+    type = "JSONB"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: tenant_doors
+resource "postgresql_table" "tenant_doors" {
+  name      = "tenant_doors"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('tenant_doors_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "tenant_tenantId"
+    type = "UUID"
+  }
+  
+  column {
+    name = "doors_id"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: ticket
+resource "postgresql_table" "ticket" {
+  name      = "ticket"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('ticket_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "lat"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "lng"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "issue"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "address"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "requestedBy"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: ticket_controllers
+resource "postgresql_table" "ticket_controllers" {
+  name      = "ticket_controllers"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('ticket_controllers_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "ticket_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "controllers_id"
+    type = "VARCHAR(255)"
+  }
+  
+}
+
+# Table: ticket_controllers_1
+resource "postgresql_table" "ticket_controllers_1" {
+  name      = "ticket_controllers_1"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('ticket_controllers_1_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "ticket_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "controllers_id"
+    type = "VARCHAR(255)"
+  }
+  
+}
+
+# Table: time
+resource "postgresql_table" "time" {
+  name      = "time"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('time_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "entryTime"
+    type = "TIME"
+  }
+  
+  column {
+    name = "exitTime"
+    type = "TIME"
+  }
+  
+  column {
+    name = "workDays"
+    type = "VARCHAR(255)"
+    default = "mon-sat"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "photoEntry"
+    type = "BOOLEAN"
+  }
+  
+  column {
+    name = "shifts"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: transport
+resource "postgresql_table" "transport" {
+  name      = "transport"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('transport_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "transportName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "ratePerKm"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: trial4
+resource "postgresql_table" "trial4" {
+  name      = "trial4"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('trial4_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "TRLID"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "STGCD"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "LOC:LOCSL"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "LOCNM"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "GIS"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "Trial OBJ"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "PLACD"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "LOCCD"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "State"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "Trialst name"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "Demand owner"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "GSEGC"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "TMR creation"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "Dispatch Agreed date"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "Actual Dispatch date"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "Received date"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "Mode of transport"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "EXP PLNTD"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "PLNTD"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "PLNT Status"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "Manual/ Planter"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "Data Upload- STD_A (Y/N)"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "Drone data capturing status"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "Drone data received date"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "Pre harvest data (Y/N)"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "Harvest-Manual/Machine"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "Harvest Date"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "data Upload Harvest data (Y/N)"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "Remark"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "EXTST"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "DGNCD"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "REPL"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "NOENT"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "NOROW"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "UNPLT"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "PPPNO"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "NOPLT"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "TRLPG"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "LAT"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "LONG"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "DESCR"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "EXTNO"
+    type = "DECIMAL"
+  }
+  
+  column {
+    name = "Crop clander date"
+    type = "DECIMAL"
+  }
+  
+}
+
+# Table: userManuals
+resource "postgresql_table" "userManuals" {
+  name      = "userManuals"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('userManuals_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "step1"
+    type = "TEXT"
+  }
+  
+  column {
+    name = "step2"
+    type = "TEXT"
+  }
+  
+  column {
+    name = "step3"
+    type = "TEXT"
+  }
+  
+  column {
+    name = "step4"
+    type = "TEXT"
+  }
+  
+  column {
+    name = "step5"
+    type = "TEXT"
+  }
+  
+  column {
+    name = "controllerName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+# Table: userManuals_controllers
+resource "postgresql_table" "userManuals_controllers" {
+  name      = "userManuals_controllers"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('userManuals_controllers_id_seq_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "userManuals_id"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "controllers_id"
+    type = "VARCHAR(255)"
+  }
+  
+}
+
+# Table: visitor
+resource "postgresql_table" "visitor" {
+  name      = "visitor"
+  schema    = "public"
+  
+  column {
+    name = "id"
+    type = "INTEGER"
+    not_null = true
+    default = "nextval('visitor_id_seq'::regclass)"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(255)"
+    not_null = true
+    default = "draft"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "user_created"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_created"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "user_updated"
+    type = "UUID"
+  }
+  
+  column {
+    name = "date_updated"
+    type = "TIMESTAMP"
+  }
+  
+  column {
+    name = "personName"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "mobileNumber"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "email"
+    type = "VARCHAR(255)"
+  }
+  
+  column {
+    name = "startDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "endDate"
+    type = "DATE"
+  }
+  
+  column {
+    name = "startTime"
+    type = "TIME"
+  }
+  
+  column {
+    name = "endTime"
+    type = "TIME"
+  }
+  
+  column {
+    name = "quantity"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "generated_Qr"
+    type = "TEXT"
+  }
+  
+  column {
+    name = "assignedAccessLevels"
+    type = "INTEGER"
+  }
+  
+  column {
+    name = "tenant"
+    type = "UUID"
+  }
+  
+  column {
+    name = "status"
+    type = "VARCHAR(50) DEFAULT 'draft'"
+  }
+  
+  column {
+    name = "sort"
+    type = "INTEGER"
+  }
+  
+}
+
+

@@ -1,0 +1,33 @@
+server:
+  persistentVolume:
+    enabled: true
+    storageClass: "ebs-sc"
+    size: 50Gi
+
+  resources:
+    requests:
+      cpu: 500m
+      memory: 2Gi
+    limits:
+      memory: 4Gi
+
+alertmanager:
+  enabled: true
+
+prometheus-pushgateway:
+  enabled: true
+
+kube-state-metrics:
+  enabled: true
+
+nodeExporter:
+  enabled: true
+
+extraScrapeConfigs: |
+  - job_name: 'kong'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['kong-service:8001']
+  - job_name: 'emqx'
+    static_configs:
+      - targets: ['emqx-dashboard:18083']

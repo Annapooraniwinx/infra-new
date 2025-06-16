@@ -1,0 +1,38 @@
+replicaCount: 3
+
+image:
+  repository: directus/directus
+  tag: "10.7.0"
+
+env:
+  - name: DB_CLIENT
+    value: "pg"
+  - name: DB_HOST
+    value: "samay-db-cluster.cjguq2ma02dv.ap-south-1.rds.amazonaws.com"
+  - name: DB_PORT
+    value: "5432"
+  - name: DB_DATABASE
+    value: "directus"
+  - name: DB_USER
+    value: "postgres"
+  - name: DB_PASSWORD
+    value: "poorani"
+  - name: DB_SSL
+    value: "true"
+  - name: DIRECTUS_AUTO_REDIRECT
+    value: "false"
+
+
+service:
+  type: ClusterIP
+  port: 8055
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  hosts:
+    - host: cms.yourdomain.com
+      paths:
+        - path: /
+          pathType: Prefix

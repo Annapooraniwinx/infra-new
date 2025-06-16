@@ -1,0 +1,22 @@
+{
+  "Origins": {
+    "Items": [
+      {
+        "Id": "Kong-API-Gateway",
+        "DomainName": "a38946df7539e4580a4446e04425ded0-2141572179.ap-south-1.elb.amazonaws.com",
+        "CustomOriginConfig": {
+          "HTTPPort": 80,
+          "HTTPSPort": 443,
+          "OriginProtocolPolicy": "https-only",
+          "OriginSSLProtocols": {
+            "Items": ["TLSv1.2"],
+            "Quantity": 1
+          },
+          "OriginReadTimeout": 30,
+          "OriginKeepaliveTimeout": 5
+        }
+      }
+    ],
+    "Quantity": 1
+  }
+}

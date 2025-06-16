@@ -1,0 +1,44 @@
+{
+    "CallerReference": "update-$(date +%s)",
+    "Origins": {
+        "Items": [
+            {
+                "Id": "S3-samaypayroll-new",
+                "DomainName": "samaypayroll-new.s3-website-ap-south-1.amazonaws.com",
+                "OriginPath": "",
+                "CustomOriginConfig": {
+                    "HTTPPort": 80,
+                    "HTTPSPort": 443,
+                    "OriginProtocolPolicy": "http-only",
+                    "OriginSslProtocols": {
+                        "Quantity": 3,
+                        "Items": ["TLSv1", "TLSv1.1", "TLSv1.2"]
+                    }
+                }
+            }
+        ],
+        "Quantity": 1
+    },
+    "DefaultCacheBehavior": {
+        "TargetOriginId": "S3-samaypayroll-new",
+        "ViewerProtocolPolicy": "redirect-to-https",
+        "AllowedMethods": {
+            "Quantity": 2,
+            "Items": ["GET", "HEAD"]
+        },
+        "Compress": true,
+        "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad"
+    },
+    "Comment": "Updated configuration for samaypayroll-new bucket",
+    "Enabled": true,
+    "PriceClass": "PriceClass_100",
+    "Aliases": {
+        "Quantity": 0
+    },
+    "Logging": {
+        "Enabled": false,
+        "IncludeCookies": false,
+        "Bucket": "",
+        "Prefix": ""
+    }
+}

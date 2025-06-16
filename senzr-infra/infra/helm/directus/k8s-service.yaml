@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: directus-service
+  labels:
+    app: directus
+spec:
+  type: ClusterIP  # Use NodePort for bare metal, LoadBalancer for direct exposure
+  ports:
+    - name: http
+      port: 8055
+      targetPort: 8055
+      protocol: TCP
+  selector:
+    app: directus

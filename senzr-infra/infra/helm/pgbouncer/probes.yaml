@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgbouncer-healthcheck
+data:
+  healthcheck.sh: |
+    #!/bin/sh
+    # Verify connection to both PgBouncer and PostgreSQL
+    if ! psql -h 127.0.0.1 -p 6432 -U pgbouncer -d pgbouncer -c "SHOW pools;" >/dev/null 2>&1; then
+      echo "Failed to connect to PgBouncer admin DB"
+      exit 1
+    fi
+    
+    if ! psql -h 127.0.0.1 -p 6432 -U postgres -d postgres -c "SELECT 1;" >/dev/null 2>&1; then
+      echo "Failed to connect to backend PostgreSQL"
+      exit 1
+    fi
+    exit 0
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgbouncer
+spec:
+  template:
+    spec:
+      containers:
+      - name: pgbouncer
+        livenessProbe:
+          exec:
+            command: ["/bin/sh", "/healthcheck/healthcheck.sh"]
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          exec:
+            command: ["pg_isready", "-h", "127.0.0.1", "-p", "6432", "-U", "pgbouncer"]
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+        startupProbe:
+          exec:
+            command: ["pg_isready", "-h", "127.0.0.1", "-p", "6432", "-U", "pgbouncer"]
+          failureThreshold: 30
+          periodSeconds: 5
+        volumeMounts:
+        - name: healthcheck
+          mountPath: /healthcheck
+      volumes:
+      - name: healthcheck
+        configMap:
+          name: pgbouncer-healthcheck
+          defaultMode: 0755

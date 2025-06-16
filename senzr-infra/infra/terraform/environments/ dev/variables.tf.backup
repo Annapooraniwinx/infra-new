@@ -1,0 +1,37 @@
+# terraform/environments/dev/variables.tf
+
+variable "vpc_cidr" {
+  description = "CIDR block for the VPC"
+  type        = string
+}
+
+variable "subnet_ids" {
+  description = "Subnet IDs for the VPC"
+  type        = list(string)
+}
+
+variable "s3_tags" {
+  description = "Tags for the S3 bucket"
+  type        = map(string)
+}
+
+variable "db_user" {
+  description = "Database user"
+  type        = string
+}
+
+variable "db_password" {
+  description = "Database password"
+  type        = string
+  sensitive   = true
+}
+
+variable "kong_namespace" {
+  description = "Kong namespace"
+  type        = string
+}
+
+variable "directus_namespace" {
+  description = "Directus namespace"
+  type        = string
+}

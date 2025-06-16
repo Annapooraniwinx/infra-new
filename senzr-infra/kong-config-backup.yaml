@@ -1,0 +1,57 @@
+apiVersion: v1
+data:
+  kong.yml: |
+    _format_version: "3.0"
+    _transform: true
+    services:
+    - name: directus-service
+      url: http://directus-service.senzr.svc.cluster.local:8055
+      routes:
+      - name: directus-api-route
+        paths:
+        - /api
+        strip_path: true
+        preserve_host: true
+        methods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+        - OPTIONS
+        - HEAD
+        protocols:
+        - http
+        - https
+        plugins:
+        - name: cors
+          config:
+            origins:
+            - "*"
+            methods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - PATCH
+            - OPTIONS
+            headers:
+            - Accept
+            - Content-Length
+            - Content-Type
+            - Authorization
+            - X-Auth-Token
+            exposed_headers:
+            - X-Auth-Token
+            credentials: true
+            max_age: 3600
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"kong.yml":"_format_version: \"3.0\"\n_transform: true\nservices:\n- name: directus-service\n  url: http://directus-service.senzr.svc.cluster.local:8055\n  routes:\n  - name: directus-api-route\n    paths:\n    - /api\n    strip_path: true\n    preserve_host: true\n    methods:\n    - GET\n    - POST\n    - PUT\n    - DELETE\n    - PATCH\n    - OPTIONS\n    - HEAD\n    protocols:\n    - http\n    - https\n    plugins:\n    - name: cors\n      config:\n        origins:\n        - \"*\"\n        methods:\n        - GET\n        - POST\n        - PUT\n        - DELETE\n        - PATCH\n        - OPTIONS\n        headers:\n        - Accept\n        - Content-Length\n        - Content-Type\n        - Authorization\n        - X-Auth-Token\n        exposed_headers:\n        - X-Auth-Token\n        credentials: true\n        max_age: 3600\n"},"kind":"ConfigMap","metadata":{"annotations":{},"name":"kong-config","namespace":"senzr"}}
+  creationTimestamp: "2025-05-23T11:58:24Z"
+  name: kong-config
+  namespace: senzr
+  resourceVersion: "5501902"
+  uid: 7639491a-cfa9-4623-8bef-39af920aa28a

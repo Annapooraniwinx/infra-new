@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "6"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app":"kong-gateway"},"name":"kong-gateway","namespace":"senzr"},"spec":{"replicas":2,"selector":{"matchLabels":{"app":"kong-gateway"}},"template":{"metadata":{"labels":{"app":"kong-gateway"}},"spec":{"containers":[{"envFrom":[{"configMapRef":{"name":"kong-config"}}],"image":"kong:3.4-alpine","livenessProbe":{"httpGet":{"path":"/status","port":8001},"initialDelaySeconds":60,"periodSeconds":30},"name":"kong","ports":[{"containerPort":8000,"name":"proxy"},{"containerPort":8001,"name":"admin"}],"readinessProbe":{"httpGet":{"path":"/status","port":8001},"initialDelaySeconds":30,"periodSeconds":10},"resources":{"limits":{"cpu":"300m","memory":"512Mi"},"requests":{"cpu":"100m","memory":"256Mi"}},"volumeMounts":[{"mountPath":"/kong/declarative","name":"kong-declarative-config","readOnly":true}]}],"volumes":[{"configMap":{"name":"kong-declarative-config"},"name":"kong-declarative-config"}]}}}}
+  creationTimestamp: "2025-05-23T11:58:24Z"
+  generation: 6
+  labels:
+    app: kong-gateway
+  name: kong-gateway
+  namespace: senzr
+  resourceVersion: "588551"
+  uid: bf2242ae-bb44-4663-b1c5-ddc73b2d3900
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: kong-gateway
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: kong-gateway
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: kong-config
+        image: kong:3.0
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /status
+            port: 8001
+            scheme: HTTP
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: kong
+        ports:
+        - containerPort: 8000
+          name: proxy
+          protocol: TCP
+        - containerPort: 8001
+          name: admin
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /status
+            port: 8001
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 300m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /kong/declarative
+          name: kong-declarative-config
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: kong-declarative-config
+        name: kong-declarative-config
+status:
+  availableReplicas: 2
+  conditions:
+  - lastTransitionTime: "2025-05-23T12:12:07Z"
+    lastUpdateTime: "2025-05-23T12:12:07Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2025-05-23T12:10:46Z"
+    lastUpdateTime: "2025-05-25T14:50:54Z"
+    message: ReplicaSet "kong-gateway-7748cb4b9d" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 6
+  readyReplicas: 2
+  replicas: 2
+  updatedReplicas: 2
